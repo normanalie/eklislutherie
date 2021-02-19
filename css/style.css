@@ -20,7 +20,6 @@ body{
 	padding-bottom:0px;
 	padding-left:10px;
 	padding-right:10px;
- 	min-height: 100%;
 	background-color: rgba(0,0,0,0);
 }
 
@@ -51,7 +50,6 @@ body{
 #cspio-content{
 	width:100%;
 	max-width: 600px;
-	padding:30px;
 	margin:0 auto;
 	background-color: #000000;
 	-webkit-border-radius: 2px;
@@ -82,7 +80,6 @@ body{
 	position: fixed;
 	bottom:0;
 	right:20px;
-	background-color: rgba(0,0,0,0.8);
 	padding:7px;
 	border-radius:2px;
 	line-height: 1;
@@ -134,7 +131,6 @@ body{
 	}
 
 	#cspio-credit{
-		position:static;
 		margin-top:20px;
 	}
 

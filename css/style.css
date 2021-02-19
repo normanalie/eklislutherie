@@ -43,7 +43,6 @@ body{
 .cspio body, .cspio body p{
 	font-family: Helvetica, Arial, sans-serif;
 	font-weight: 400;
-	font-style: ;
 	font-size: 20px;
 	line-height: 1.50em;
 	color:#ffffff;
@@ -54,7 +53,6 @@ body{
 	max-width: 600px;
 	padding:30px;
 	margin:0 auto;
-	display: none;
 	background-color: #000000;
 	-webkit-border-radius: 2px;
 	border-radius: 2px;

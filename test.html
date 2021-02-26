@@ -68,7 +68,7 @@
 
 	<style>
 		html{
-			background: #ffffff url('img/bg-wait.min.jpg');
+			background: #ffffff url('img/René Carayol/Eklis-202012-ST-001 RC34-BD.jpg');
 			-webkit-background-size: cover;
 			-moz-background-size: cover;
 			-o-background-size: cover;
@@ -77,6 +77,26 @@
 	</style>
 
 	<script>
+		function $_GET(param) {
+			var vars = {};
+			window.location.href.replace( location.hash, '' ).replace( 
+				/[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+				function( m, key, value ) { // callback
+					vars[key] = value !== undefined ? value : '';
+				}
+			);
+
+			if ( param ) {
+				return vars[param] ? vars[param] : null;	
+			}
+			return vars;
+		}
+		//bg
+		let pre = "#ffffff url('img/René Carayol/Eklis-202012-ST-001 RC";
+		let imgId = $_GET('imgId');
+		let post = "-BD.jpg') no-repeat center bottom fixed";
+		document.getElementById('htmlBG').style.background = pre+imgId+post;
+        document.getElementById('htmlBG').style.backgroundSize = 'cover';
 		// Animate Delay
 		setTimeout(function(){ jQuery("#cspio-content").show().addClass('animated fadeIn'); }, 250);
 

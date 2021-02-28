@@ -1,5 +1,3 @@
-/* Styles */
-/* Page Defults */
 @font-face {
     font-family: 'eklis font';
     src: url('fonts/Eklis.eot');
@@ -12,143 +10,72 @@
     font-display: swap;
 }
 
-@font-face {
-	font-family: 'Pacifico';
-	font-style: normal;
-	font-weight: 400;
-	src: url(https://fonts.gstatic.com/s/pacifico/v17/FwZY7-Qmy14u9lezJ-6H6MmBp0u-.woff2) format('woff2');
-	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
 
+*, ::before, ::after{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
 
 html{
-	height: 100%;
-	margin-top: 0 !important;
-	overflow: hidden;
-	
+    background: #010101 url('../img/bg-wait.min.jpg');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+    height: 100%;
 }
+
 
 body{
-	text-align:center;
-	overflow: auto;
-	-webkit-overflow-scrolling: touch;
-	padding:0 0px;
-	height:100%;
+    color: #f1f1f1;
 }
 
-
-#cspio-page{
-	padding-bottom:0px;
-	padding-left:10px;
-	padding-right:10px;
-	background-color: rgba(0,0,0,0);
+.text{
+    margin-top: 15%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+    text-align: center;
 }
 
-/* Margins */
-#cspio-description,#cspio-logo, #cspio-socialprofiles,#cspio-privacy-policy-txt, #cspio-headline,#cspio-progressbar,#cspio-countdown,#cspio-thankyoumsg,#cspio-sharebuttons,#cspio-afterform{
-	margin-bottom:30px;
+h1{
+    font-family: 'eklis font';
+    font-size: 40px;
+    margin-bottom: 2vh;
 }
 
-/* Responsive Images */
-#cspio-description img,#cspio-thankyoumsg img, #cspio-logo{
-	max-width:100%;
-	height:auto;
+h2, p{
+    font-family: Helvetica, sans-serif;
 }
 
-/* Content Elements */
-.cspio body{
-	background: transparent;
+h2{
+    font-size: 20px;
+    font-weight: 400;
+}
+.credit{
+    position: fixed;
+    bottom: 4px;
+    right: 10px;
+    font-size: 12px;
 }
 
-.cspio body, .cspio body p{
-	font-family: Helvetica, Arial, sans-serif;
-	font-weight: 400;
-	font-size: 20px;
-	line-height: 1.50em;
-	color:#ffffff;
+a{
+    text-decoration: underline;
+    color: #f1f1f1;
 }
 
-#cspio-content{
-	width:100%;
-	max-width: 600px;
-	margin:0 auto;
-	background-color: #000000;
-	-webkit-border-radius: 2px;
-	border-radius: 2px;
-	-moz-background-clip: padding;
-	-webkit-background-clip: padding-box;
-	background-clip: padding-box;
-	background-color:transparent;
-}
+@media (max-width: 500px){
+    h1{
+        font-size: 8vw;
+        margin-bottom: 1vh;
+    }
 
-#cspio-headline{
-	margin-top:50%;
-	font-family: Pacifico;
-}
-
-/* Footer Credit */
-#cspio-credit{
-	font-size:11px;
-	position: fixed;
-	bottom:0;
-	right:20px;
-	padding:7px;
-	border-radius:2px;
-	line-height: 1;
-	color: #fff;
-}
-#cspio-credit a{
-	color: #fff;
-}
-
-#cspio-credit img {
-    margin-left: auto;
-    margin-right: auto;
-    width: 125px;
-    margin-top: -4px;
-    vertical-align: middle;
-}
-
-
-
-/* Mobile */
-@media (max-width: 480px) {
-	#cspio-page{
-		padding-top: 10px;
-	}
-	.cspio .input-group-btn, .cspio .input-group{
-		display:block;
-		width:100%;
-	}
-	.cspio #cspio-subscribe-btn{
-		margin-left:0;
-		width:100%;
-		display:block;
-	}
-	
-	.cspio .input-group .form-control:first-child, .cspio .input-group-addon:first-child, .cspio .input-group-btn:first-child>.btn, .cspio .input-group-btn:first-child>.dropdown-toggle, .cspio .input-group-btn:last-child>.btn:not(:last-child):not(.dropdown-toggle) {
-		border-bottom-right-radius: 4px;
-		border-top-right-radius: 4px;
-	}
-	.cspio .input-group .form-control:last-child, .cspio .input-group-addon:last-child, .cspio .input-group-btn:last-child>.btn, .cspio .input-group-btn:last-child>.dropdown-toggle, .cspio .input-group-btn:first-child>.btn:not(:first-child) {
-		border-bottom-left-radius: 4px;
-		border-top-left-radius: 4px;
-	}
-	.countdown_section{
-		margin-bottom: 10px !important;
-	}
-	
-	#cspio-field-wrapper{
-	  width:100%;
-	}
-
-	#cspio-credit{
-		margin-top:20px;
-	}
-
-	.flexbox #cspio-page{
-	display:flex;
-	padding:10px;
-	flex-direction: column;
-	}
+    h2{
+        font-size: 4vw;
+    }
 }

@@ -217,5 +217,6 @@ p {
                     url('../img/René Carayol/Eklis-202012-ST-001 RC34-BD.jpg');
         background-repeat: no-repeat;
         background-position: top right;
-        background-size: cover;
+        background-size: cover;  
+        z-index: 0; /*prevent border line between div and linear gradient*/
     }

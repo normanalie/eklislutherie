@@ -231,3 +231,40 @@ a:hover.semibold-link{
         background-size: cover;  
         z-index: 0; /*prevent border line between div and linear gradient*/
     }
+
+
+/*-------------ACHIEVEMENTS-------------*/
+.slide { 
+    display: flex;
+    overflow: auto;
+    flex-wrap: nowrap;
+}
+
+.card {
+    margin: 20px;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+}
+
+.card img {
+    height: 80%;
+    max-height: 630px;
+    object-fit: cover;
+    object-position: 0 100%;
+}
+
+.card .content {
+    overflow-y: hidden;
+    margin: 10px 10px 0px 10px;
+}
+
+.card-text {
+    max-width: 100%;
+}
+
+.card-seemore{
+    float: right;
+    margin-bottom: 5px;
+}
+

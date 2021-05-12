@@ -49,6 +49,31 @@ p {
     color: #4F4F4F;
 }
 
+a {
+    font-size: 18px;
+    font-weight: normal;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    color: #846E52;
+}
+a:hover {
+    color: #846E52;
+    font-weight: 700;
+}
+
+a.semibold-link{
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    color: #846E52;
+    transition: 0.3s linear;
+    border-bottom: 1px solid transparent;
+}
+a:hover.semibold-link{
+    border-color: #846E52;
+}
+
 
 
 /*-------------MENU-------------*/
@@ -88,20 +113,6 @@ p {
         display: inline;
         list-style: none;
         padding: 0px 30px;
-    }
-
-    .menu .right a {
-        font-size: 18px;
-        font-weight: 700;
-        text-decoration: none;
-        color: #846E52;
-        /*animation*/
-        transition: 0.3s linear;
-        border-bottom: 1px solid transparent;
-    }
-
-    .menu .right a:hover {
-        border-color: #846E52;
     }
 
 /*-------------HERO-------------*/

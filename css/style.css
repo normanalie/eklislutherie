@@ -27,52 +27,72 @@ body, html{
     height: 100%;
 }
 
-body {
-    font-family: 'Montserrat', 'sans-serif'; 
-    color: #333333;
-    background-color: #FCFCFC;    
-}
+/* ------------------ DEFAULT ------------------ */
 
-h3 {
-    font-size: 25px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    color: #4F4F4F;
-}
+    body {
+        font-family: 'Montserrat', 'sans-serif'; 
+        font-size: 18px;
+        font-weight: normal;
+        letter-spacing: 0.02em;
+        color: #333333;
+        background-color: #FCFCFC;    
+    }
 
-p {
-    font-size: 18px;
-    font-weight: normal;
-    letter-spacing: 0.02em;
-    text-align: justify;
-    text-justify:inter-word;
-    color: #4F4F4F;
-}
+    h3 {
+        font-size: 25px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        color: #4F4F4F;
+    }
 
-a {
-    font-size: 18px;
-    font-weight: normal;
-    letter-spacing: 0.02em;
-    text-decoration: none;
-    color: #846E52;
-}
-a:hover {
-    color: #846E52;
-    font-weight: 700;
-}
+    p {
+        font-size: 18px;
+        font-weight: normal;
+        letter-spacing: 0.02em;
+        text-align: justify;
+        text-justify:inter-word;
+        color: #4F4F4F;
+    }
 
-a.semibold-link{
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    text-decoration: none;
-    color: #846E52;
-    transition: 0.3s linear;
-    border-bottom: 1px solid transparent;
-}
-a:hover.semibold-link{
-    border-color: #846E52;
-}
+    a {
+        font-size: 18px;
+        font-weight: normal;
+        letter-spacing: 0.02em;
+        text-decoration: none;
+        color: #846E52;
+    }
+    a:hover {
+        color: #846E52;
+        font-weight: 700;
+    }
+
+    a.semibold-link{
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        text-decoration: none;
+        color: #846E52;
+        transition: 0.3s linear;
+        border-bottom: 1px solid transparent;
+    }
+    a:hover.semibold-link{
+        border-color: #846E52;
+    }
+
+    button {
+        color: #F6F6F6;
+        border: none;
+        background-color: #916453;
+
+        width: calc(115px + 6vw);
+        height: calc(40px + 3vw);
+        max-width: 180px;
+        max-height: 50px;
+        border-radius: 25px;
+    }
+    button:hover {
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    }
 
 
 
@@ -235,56 +255,62 @@ a:hover.semibold-link{
 
 
 /*-------------ACHIEVEMENTS-------------*/
-.achievements .title {
-    width: 100%;
-    text-align: center;
-    text-decoration: underline;
-    margin-top: 50px;
-    margin-bottom: 20px;
-}
+    .achievements .title {
+        width: 100%;
+        text-align: center;
+        text-decoration: underline;
+        margin-top: 50px;
+        margin-bottom: 20px;
+    }
 
-.slide { 
-    display: flex;
-    overflow-x:scroll;
-    flex-wrap: nowrap;
-}
+    .slide { 
+        display: flex;
+        overflow-x:scroll;
+        flex-wrap: nowrap;
+    }
 
-/*Hide horizontal scrollbar (scroll in JS)*/
-.slide::-webkit-scrollbar {
-    display: none;
-}
-.slide {
-    -ms-overflow-style: none;  /* IE and Edge */
-}
+    /*Hide horizontal scrollbar (scroll in JS)*/
+    .slide::-webkit-scrollbar {
+        display: none;
+    }
+    .slide {
+        -ms-overflow-style: none;  /* IE and Edge */
+    }
 
 
-.card {
-    flex: 0 0 auto;
-    margin: 20px;
-    width: 100%;
-    max-width: 400px;
-    height: auto;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
-}
+    .card {
+        flex: 0 0 auto;
+        margin: 20px;
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    }
 
-.card img {
-    height: 80%;
-    max-height: 630px;
-    object-fit: cover;
-    object-position: 0 100%;
-}
+    .card img {
+        height: 80%;
+        max-height: 630px;
+        object-fit: cover;
+        object-position: 0 100%;
+    }
 
-.card .content {
-    overflow-y: hidden;
-    margin: 10px 10px 0px 10px;
-}
+    .card .content {
+        overflow-y: hidden;
+        margin: 10px 10px 0px 10px;
+    }
 
-.card-text {
-    max-width: 100%;
-}
+    .card-text {
+        max-width: 100%;
+    }
 
-.card-seemore{
-    float: right;
-    margin-bottom: 5px;
-}
+    .card-seemore{
+        float: right;
+        margin-bottom: 5px;
+    }
 
+    .achievements button {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        transition: 0.3s linear;
+    }

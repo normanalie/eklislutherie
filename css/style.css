@@ -149,6 +149,7 @@ a:hover.semibold-link{
         font-family: 'Montserrat', 'sans-serif'; 
         font-weight: normal;
         font-size: calc(0.5rem + 4vmin);
+        overflow-y: hidden;
     }
 
 
@@ -234,17 +235,36 @@ a:hover.semibold-link{
 
 
 /*-------------ACHIEVEMENTS-------------*/
+.achievements .title {
+    width: 100%;
+    text-align: center;
+    text-decoration: underline;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
 .slide { 
     display: flex;
-    overflow: auto;
+    overflow-x:scroll;
     flex-wrap: nowrap;
 }
 
+/*Hide horizontal scrollbar (scroll in JS)*/
+.slide::-webkit-scrollbar {
+    display: none;
+}
+.slide {
+    -ms-overflow-style: none;  /* IE and Edge */
+}
+
+
 .card {
+    flex: 0 0 auto;
     margin: 20px;
     width: 100%;
     max-width: 400px;
     height: auto;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .card img {

@@ -255,11 +255,14 @@ body, html{
 
 
 /*-------------ACHIEVEMENTS-------------*/
+    .achievements {
+        margin-top: 50px;
+        margin-bottom: 20px;
+    }
     .achievements .title {
         width: 100%;
         text-align: center;
         text-decoration: underline;
-        margin-top: 50px;
         margin-bottom: 20px;
     }
 
@@ -276,7 +279,6 @@ body, html{
     .slide {
         -ms-overflow-style: none;  /* IE and Edge */
     }
-
 
     .card {
         flex: 0 0 auto;
@@ -309,6 +311,7 @@ body, html{
     }
 
     .achievements button {
+        margin-top: 20px;
         position: relative;
         left: 50%;
         transform: translateX(-50%);

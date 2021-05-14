@@ -195,7 +195,7 @@ body, html{
         /*background*/
         background: #846E52;
         background-size: 0%; /*Underline is animated with background-size*/
-        background-image: url('./svg/cta-underline.svg');
+        background-image: url('../icons/cta-underline.svg');
         background-position: 50% 80%;
         background-repeat: no-repeat;
 
@@ -312,8 +312,45 @@ body, html{
 
     .achievements button {
         margin-top: 20px;
+        margin-bottom: 14px;
         position: relative;
         left: 50%;
         transform: translateX(-50%);
         transition: 0.3s linear;
+    }
+
+
+
+/*-------------SOCIALS-------------*/
+
+    .socials {
+        margin-top: 64px;
+        /*space between*/
+        display: flex;
+        justify-content: space-evenly;
+        /*alignement*/
+        text-align: center;
+        /*responsive*/
+        width: 100%;
+        height: calc(73px + 4vw);
+        max-height: 150px;
+        background: linear-gradient(90.41deg, #9778AB 0%, #AB9478 100%);
+    }
+
+    .socials div {
+        height: 100%;  
+    }
+
+    .socials img {
+        position: relative;
+        height: 63px;
+        /*vertical middle*/
+        top: 50%;
+        transform: translateY(-50%);
+        /*animation*/
+        transition: 0.2s linear;
+    }
+
+    .socials img:hover {
+        filter: invert(44%) sepia(17%) saturate(695%) hue-rotate(354deg) brightness(95%) contrast(93%); /*#846E52*/
     }

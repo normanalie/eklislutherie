@@ -101,8 +101,7 @@ body, html{
 
     .menu{
         position: relative;
-        top: 5px;
-        bottom: -5px;
+        padding-top: 5px;
         left: 50%;
         width: 100%;
         max-width: 1300px;
@@ -113,6 +112,11 @@ body, html{
         padding-bottom: 5px;
         border-bottom: 1px solid rgba(86, 86, 86, 0.78);
     }
+    .menu-background {
+        background: linear-gradient(180deg, #FCFCFC 0%, rgba(252, 252, 252, 0.5) 100%);
+        max-width: 100%;
+    }
+
     /* Logo */
     .menu .left a{
         text-decoration: none;
@@ -219,7 +223,7 @@ body, html{
     }
 
 
-    
+
 /*-------------SOCIALS-------------*/
 
     .socials {

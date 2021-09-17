@@ -58,7 +58,7 @@ body, html{
         font-size: 18px;
         font-weight: 500;
         letter-spacing: 0.02em;
-        text-decoration: none;
+        text-decoration: underline;
         color: #846E52;
     }
     a:hover {

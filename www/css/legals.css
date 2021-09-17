@@ -1,0 +1,10 @@
+/*-------------LEGALS-------------*/
+
+    .legals {
+        padding-top: 40px;
+        margin-left: 20%;
+    }
+     
+    .legals>p {
+        margin-left: 2%;
+    }

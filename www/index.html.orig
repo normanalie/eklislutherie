@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eklis Lutherie</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <meta name="template" content="comingsoonpage.com 1.0.0" />
+	<meta name="author" content="Thomas HARDUIN, thomas@eklislutherie.re" />
+	<meta name="designer" content="Norman ALIÉ, mail@normanalie.fr">
+	<meta name="description" content="Votre guitare ou votre basse entièrement personnalisée. Fabriquée entièrement à la main à l'ile de La Réunion.">
+	<meta name="keywords" content="lutherie, guitare, reparation, reparateur, sur-mesure, reunion, la reunion, fabrication, basse, ebeniste, 974"/>
+	<meta name="subject" content="lutherie">
+	<meta name="copyright" content="Eklis Lutherie">
+	<meta name="geo.region" content="FR-RE">
+
+	<meta name="og:title" content="Eklis Lutherie"/>
+	<meta name="og:type" content="website"/>
+	<meta name="og:url" content="https://eklislutherie.re"/>
+	<meta name="og:image" content="https://eklislutherie.re/img/bg-wait.min.jpg"/>
+	<meta name="og:description" content="Votre guitare ou votre basse entièrement personnalisée. Fabriquée entièrement à la main à l'ile de La Réunion."/>
+
+	<meta name="twitter:creator" content="@zeprof2c">
+	<meta name="twitter:url" content="https://eklislutherie.re">
+	<meta name="twitter:title" content="Eklis Lutherie">
+	<meta name="twitter:description" content="Votre guitare ou votre basse entièrement personnalisée. Fabriquée entièrement à la main à l'ile de La Réunion.">
+	<meta name="twitter:image" content="https://eklislutherie.re/img/bg-wait.min.jpg">
+		
+	<meta name="robots" content="index,follow">
+	<meta name="googlebot" content="index,follow">
+	<meta name="language" content="FR">
+	<meta name="google" content="notranslate">
+
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-0JZ6MKGY97"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'G-0JZ6MKGY97');
+	</script>
+</head>
+<body>
+    <div class="page">
+        <div class="text">
+            <h1>EklisLutherie.re</h1>
+            <h2>Nos luthiers du web préparent le site</h2>
+        </div>
+        <div class="credit">
+            <p>Image: <a target="_blank" href="hhttps://unsplash.com/photos/8K9v_x04OT0">Unsplash</a></p>
+        </div>
+    </div>   
+</body>
+</html>

@@ -1,0 +1,81 @@
+@font-face {
+    font-family: 'eklis font';
+    src: url('fonts/Eklis.eot');
+    src: url('fonts/Eklis.eot?#iefix') format('embedded-opentype'),
+        url('fonts/Eklis.woff2') format('woff2'),
+        url('fonts/Eklis.woff') format('woff'),
+        url('fonts/Eklis.svg#Eklis') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+*, ::before, ::after{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+html{
+    background: #010101 url('../img/bg-wait.min.jpg');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+    height: 100%;
+}
+
+
+body{
+    color: #f1f1f1;
+}
+
+.text{
+    margin-top: 15%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+    text-align: center;
+}
+
+h1{
+    font-family: 'eklis font';
+    font-size: 40px;
+    margin-bottom: 2vh;
+}
+
+h2, p{
+    font-family: Helvetica, sans-serif;
+}
+
+h2{
+    font-size: 20px;
+    font-weight: 400;
+}
+.credit{
+    position: fixed;
+    bottom: 4px;
+    right: 10px;
+    font-size: 12px;
+}
+
+a{
+    text-decoration: underline;
+    color: #f1f1f1;
+}
+
+@media (max-width: 500px){
+    h1{
+        font-size: 8vw;
+        margin-bottom: 1vh;
+    }
+
+    h2{
+        font-size: 4vw;
+    }
+}

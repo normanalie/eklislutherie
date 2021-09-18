@@ -276,6 +276,7 @@ body, html{
 
     .footer a {
         color: #fff;
+        text-decoration: none;
     }
 
     .footer-col {

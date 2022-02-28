@@ -1,0 +1,7 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/zija0664//public_html/
+    - /bin/rm -Rf $DEPLOYPATH
+    - /bin/mkdir $DEPLOYPATH
+    - /bin/cp -R www/* $DEPLOYPATH

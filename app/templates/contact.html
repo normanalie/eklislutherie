@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}Contact - Eklis Lutherie{% endblock %}
+
+
+{% block content %}
+<div class="hero-header">
+    <div class="">
+        <div class="menu">
+            <div class="left">
+                <a href="/"><img src="{{ url_for('static', filename='icons/logo-color.svg') }}" alt="Logo Eklis Lutherie. E en forme de guitare."></a>
+            </div>
+            <div class="right">
+                <ul>
+                    <li>
+                        <a class="semibold-link" href="https://www.eklislutherie.re">
+                        Accueil
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="hero-content">
+        <h1 class="hero-title">Eklis Lutherie</h1>
+        <h1 class="hero-subtitle">
+            Nous contacter
+        </h1>
+        
+    </div>
+</div>
+
+<div class="contact">
+    <h2 class="title">Nous contacter</h2>
+    <br>
+    <img class="icon" src="{{ url_for('static', filename='icons/email.svg') }}" alt="Icone email" loading="lazy">
+    <br>
+    <a href="mailto:contact@eklislutherie.re" class="contact-link">contact@eklislutherie.re</a>
+
+    <div class="bigbreak"></div>
+
+    <img class="icon" src="{{ url_for('static', filename='icons/facebook-messenger.svg') }}" alt="Icone Messenger" loading="lazy">
+    <br>
+    <a href="https://www.messenger.com/t/100614798944467" target="_blank" class="contact-link">Eklis Lutherie sur Facebook Messenger</a>
+    
+    <div class="bigbreak"></div>
+</div>
+
+<hr class="separator">
+
+<div class="personnals">
+
+    <div class="personnal stef">
+        <h3 class="name">Stéphane DETERNE</h3>
+        <br>
+        <p>
+            <a href="mailto:stephane@eklislutherie.re" class="semibold-link">stephane@eklislutherie.re</a>
+        </p>
+        <p>
+            Artisan Luthier <br>
+            Siret: 894 236 579
+        </p>
+    </div>
+
+    <div class="personnal thomas">
+        <h3 class="name">Thomas HARDUIN</h3>
+        <br>
+        <p>
+            <a href="mailto:thomas@eklislutherie.re" class="semibold-link">thomas@eklislutherie.re</a>
+        </p>
+        <p>
+            Artisan Luthier <br>
+            Siret: 892 870 379
+        </p>
+    </div>
+</div>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}">
+{% endblock %}

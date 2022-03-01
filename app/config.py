@@ -1,4 +1,4 @@
-"""Flask DEVELOPMENT configuration."""
+"""Flask configuration."""
 """
 To start app: 
     set FLASK_APP=app
@@ -9,10 +9,6 @@ To start app:
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-
-TESTING = True
-DEBUG = True
-DEVELOPMENT = True
 SECRET_KEY = os.environ.get('SECRET_KEY') or 'yTnSN65a'
 
 SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \

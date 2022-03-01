@@ -1,0 +1,61 @@
+{% extends "base.html" %} 
+
+{% block title %}Mentions Légales - Eklis Lutherie{% endblock %}
+
+{% block content %}
+<div class="hero-header">
+    <div class="">
+        <div class="menu">
+            <div class="left">
+                <a href="/"><img src="{{ url_for('static', filename='icons/logo-color.svg') }}" alt="Logo Eklis Lutherie. E en forme de guitare."></a>
+            </div>
+            <div class="right">
+                <ul>
+                    <li>
+                        <a class="semibold-link" href="http://eklislutherie.re">
+                        Accueil
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="hero-content">
+        <h1 class="hero-title">Eklis Lutherie</h1>
+        <h1 class="hero-subtitle">
+            Mentions légales
+        </h1>
+        
+    </div>
+</div>
+
+<div class="legals">
+    <h3 class="title">Editeurs</h3>
+    <p>
+        Thomas HARDUIN <br>
+        6 impasse de la vigne, 97411, La Réunion <br>
+        02 62 44 61 82 <br>
+        thomas@eklislutherie.re <br>
+        Siret: 892 870 379
+    </p>
+
+    <p>
+        Stéphane DETERNE <br>
+        34 impasse Naransamy, 97411, La Réunion <br>
+        02 62 44 53 99 <br>
+        stephane@eklislutherie.re <br>
+        Siret: 894 236 579
+    </p>
+    <br>
+
+    <br>
+    <h3 class="title">Hébergeur</h3>
+    <p>
+        o2switch <br>
+        04 44 44 60 40 <br>
+        Siret : 510 909 807 00024
+    </p>
+</div>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/legals.css') }}">
+{% endblock %}

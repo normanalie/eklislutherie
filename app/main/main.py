@@ -11,3 +11,7 @@ def index():
 @bp.route('/contact/')
 def contact():
     return render_template("contact.html")
+
+@bp.route('/legals/')
+def legals():
+    return render_template("legals.html")

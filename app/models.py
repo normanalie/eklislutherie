@@ -56,6 +56,8 @@ class Article(db.Model):
     subtitle = db.Column(db.String(128))
     content = db.Column(db.Text, nullable=False)
     cover_img = db.Column(db.String(128), nullable=False)
+    
+    tags = db.relationship('Tag', secondary='tags', backref=db.backref('articles', lazy=True))
 
     def __repr__(self):
         return f'<Article: {self.title}>'

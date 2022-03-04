@@ -10,9 +10,11 @@ def create_app():
     app.config.from_pyfile("config.py")
 
     db.init_app(app)
-    migrate.init_app(app)
+    migrate.init_app(app, db)
 
     from . import main
     app.register_blueprint(main.bp)
+
+    from app import models
 
     return app

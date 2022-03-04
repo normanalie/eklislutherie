@@ -1,4 +1,5 @@
 from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import datetime
 
 from app import db
 
@@ -31,7 +32,7 @@ class Action(db.Model):
 class UserHistory(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    date = db.Column(db.DateTime(), nullable=False)
+    date = db.Column(db.DateTime(), nullable=False, default=datetime.utcnow())
     action_id = db.Column(db.Integer(), db.ForeignKey('action.id'), nullable=False)
     by_user_id = db.Column(db.Integer(), db.ForeignKey('user.id'), nullable=False)
     
@@ -71,7 +72,7 @@ class Tag(db.Model):
 class ArticleHistory(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     article_id = db.Column(db.Integer, db.ForeignKey('article.id'), nullable=False)
-    date = db.Column(db.DateTime, nullable=False)
+    date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
     action_id = db.Column(db.Integer, db.ForeignKey('action.id'), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 

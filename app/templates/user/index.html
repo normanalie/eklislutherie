@@ -9,7 +9,7 @@
             <h1 class="mb-4">Eklis Lutherie</h1>
             <h2 class="mb-4">Espace utilisateur</h2>
             {% if current_user.is_anonymous %}
-            <div class="d-grid">
+            <div class="">
                 <button type="button" class="btn btn-lg btn-success" onclick="location.href='{{ url_for('user.login') }}'">Se connecter</button>
             </div>
             {% else %}

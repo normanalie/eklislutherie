@@ -98,23 +98,24 @@
 <div id="achievements" class="achievements">
     <h3 class="title">Nos réalisations</h3>
     <div id="slide-cart" class="slide row">
-        <div class="col-sm-2 d-none d-md-block"></div>
-        <div id="first-card" class="card col-sm-3 p-0">
-            <img src="{{ url_for('static', filename='img/achievements/franckeinstrat-01.min.jpg') }}" alt="">
+    <div class="col-sm-2 d-none d-md-block"></div>
+    {% set first_article = true %}
+    {% for achievement in achievements %}
+        {% if first_article %}
+            <div id="first-card" class="card col-sm-3 p-0">
+            {% set first_article = false %}
+        {% else %}
+            <div class="card col-sm-3 p-0">
+        {% endif %}
+
+        <img src="{{ url_for('static', filename=achievement.cover_img) }}" alt="">
             <div class="content">
-                <h3 class="card-title">FRANKENSTRAT</h3>
-                <p class="card-text">Corps en frêne, Manche érable ondé, Touche érable</p>
+                <h3 class="card-title">{{ achievement.title }}</h3>
+                <p class="card-text">{{ achievement.subtitle }}</p>
                 <!-- <a href="#" class="semibold-link card-seemore">Voir Plus</a> -->
             </div>
         </div>
-        <div class="card col-sm-3 p-0">
-            <img src="{{ url_for('static', filename='img/achievements/boudougrace-01.min.jpg') }}" alt="">
-            <div class="content">
-                <h3 class="card-title">BOUDOU GRACE</h3>
-                <p class="card-text">Corps en acajou, manche en érable ondé, touche en ébène</p>
-                <!-- <a href="#" class="semibold-link card-seemore">Voir Plus</a> -->
-            </div>
-        </div>
+    {% endfor %}
     </div>
     <a href="#pricing"><button>Nos Tarifs</button></a>
 </div>

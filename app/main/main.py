@@ -2,11 +2,13 @@ from flask import render_template
 
 from app import db
 from app.main import bp
+from app.models import Article
 
 @bp.route('/')
 @bp.route('/index/')
 def index():
-    return render_template("index.html")
+    articles = Article.query.limit(10).all()
+    return render_template("index.html", achievements=articles)
 
 @bp.route('/contact/')
 def contact():

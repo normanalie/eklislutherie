@@ -1,5 +1,5 @@
 from flask import redirect, render_template, url_for, request
-from flask_login import current_user, login_user
+from flask_login import current_user, login_user, logout_user
 from werkzeug.urls import url_parse
 
 from app import db
@@ -39,4 +39,5 @@ def login():
 
 @bp.route('/logout')
 def logout():
+    logout_user()
     return redirect(url_for('main.index'))

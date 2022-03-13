@@ -8,7 +8,7 @@ migrate = Migrate()
 login = LoginManager()
 
 from app import models
-from . import main
+from . import main, user
 
 
 def create_app():
@@ -21,5 +21,6 @@ def create_app():
     login.init_app(app)
 
     app.register_blueprint(main.bp)
+    app.register_blueprint(user.bp)
 
     return app

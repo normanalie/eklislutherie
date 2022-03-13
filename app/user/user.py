@@ -9,11 +9,17 @@ from app.user import bp
 from app.user.forms import LoginForm
 
 
+@bp.route('/')
+@bp.route('/index/')
+def index():
+    return render_template('user/index.html')
+
+
 @bp.route('/login/', methods=['GET', 'POST'])
 def login():
     errors = []
     if current_user.is_authenticated:
-        return redirect(url_for('main.index'))
+        return redirect(url_for('user.index'))
 
     form = LoginForm()
     if form.validate_on_submit():  # POST processing
@@ -26,6 +32,11 @@ def login():
             login_user(user, remember=form.remember_me.data)
             next_page = request.args.get('next')
             if not next_page or url_parse(next_page).netloc != '':  # Check if there is a next_page and if the next_page is a relative path
-                next_page = url_for('main.index')
+                next_page = url_for('user.index')
             return redirect(next_page)
     return render_template('user/login.html', form=form, errors=errors)
+
+
+@bp.route('/logout')
+def logout():
+    return redirect(url_for('main.index'))

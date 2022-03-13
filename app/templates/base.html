@@ -22,13 +22,13 @@
 	<meta name="og:title" content="Eklis Lutherie"/>
 	<meta name="og:type" content="website"/>
 	<meta name="og:url" content="https://eklislutherie.re"/>
-	<meta name="og:image" content="https://eklislutherie.re/img/bg-wait.min.jpg"/>
+	<meta name="og:image" content="{{ url_for('static', filename='img/bg-contact.min.jpg') }}"/>
 	<meta name="og:description" content="Votre guitare ou votre basse personnalisée. Fabriquée entièrement à la main à l'ile de La Réunion."/>
 
 	<meta name="twitter:url" content="https://eklislutherie.re">
 	<meta name="twitter:title" content="Eklis Lutherie">
 	<meta name="twitter:description" content="Votre guitare ou votre basse personnalisée. Fabriquée entièrement à la main à l'ile de La Réunion.">
-	<meta name="twitter:image" content="https://eklislutherie.re/img/bg-wait.min.jpg">
+	<meta name="twitter:image" content="{{ url_for('static', filename='img/bg-contact.min.jpg') }}">
 		
 	<meta name="robots" content="index,follow">
 	<meta name="googlebot" content="index,follow">
@@ -48,6 +48,7 @@
 
 </head>
 <body>
+
  {% block content %}
  {% endblock %}
 
@@ -83,8 +84,8 @@
 			<div class="about">
 				<ul>
 					<li><h3>A propos</h3></li>
-					<li><a href="contact/">Nous contacter</a></li>
-					<li><a href="legals/">Mentions Légales</a></li>
+					<li><a href="{{ url_for('main.contact') }}">Nous contacter</a></li>
+					<li><a href="{{ url_for('main.legals') }}">Mentions Légales</a></li>
 					<!-- <li><a href="./cookies/">Cookies</a></li> -->
 					<li><a href="http://www.renecarayol.fr" class="thin-link">Photographe</a></li>
 					<li><a href="https://normanalie.fr/" class="thin-link">Webmaster</a></li>

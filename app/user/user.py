@@ -1,5 +1,5 @@
 from flask import redirect, render_template, url_for, request
-from flask_login import current_user, login_user, logout_user
+from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 
 from app import db
@@ -61,5 +61,4 @@ def achievements_edit(id):
 @bp.route('/achievements/new/')
 @login_required
 def achievements_new():
-
     return render_template('user/achievements_new.html', form=form)

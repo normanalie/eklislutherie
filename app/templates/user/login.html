@@ -8,7 +8,7 @@
         <h1>Se Connecter</h1>
     </div>
 
-    <form action="" method="post" class="form-login">
+    <form action="" method="post" class="form">
         {{ form.hidden_tag() }}
 
         {% if errors %}
@@ -36,6 +36,4 @@
         </div>
     </form>
 </div>
-
-<link rel="stylesheet" href="{{ url_for('static', filename='css/user/login.css') }}">
 {% endblock %}

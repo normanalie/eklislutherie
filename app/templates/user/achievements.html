@@ -2,7 +2,8 @@
 
 {% block content %}
 <div class="container-fluid mt-5 px-5">
-    <table class="table">
+    <a href="{{ url_for('user.achievements_new') }}"><button class="btn btn-success">Nouveau</button></a>
+    <table class="table mt-3">
         <thead>
           <tr>
             <th scope="col">#</th>

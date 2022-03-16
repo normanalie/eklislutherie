@@ -7,7 +7,7 @@ from app.models import User
 from app.user import bp
 
 from app.models import Article
-from app.user.forms import LoginForm
+from app.user.forms import LoginForm, ArticleForm
 
 
 @bp.route('/')
@@ -61,4 +61,5 @@ def achievements_edit(id):
 @bp.route('/achievements/new/')
 @login_required
 def achievements_new():
+    form = ArticleForm()
     return render_template('user/achievements_new.html', form=form)

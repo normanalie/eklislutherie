@@ -6,6 +6,7 @@ from flask_login import LoginManager
 db = SQLAlchemy()
 migrate = Migrate()
 login = LoginManager()
+login.login_view = 'user.login'
 
 from app import models
 from . import main, user

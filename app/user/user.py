@@ -6,6 +6,8 @@ from app import db
 from app.models import User
 from app.user import bp
 
+from app.models import Article
+
 from app.user.forms import LoginForm
 
 
@@ -37,7 +39,24 @@ def login():
     return render_template('user/login.html', form=form, errors=errors)
 
 
-@bp.route('/logout')
+@bp.route('/logout/')
 def logout():
     logout_user()
     return redirect(url_for('main.index'))
+
+
+@bp.route('/achievements/')
+def achievements():
+    articles = Article.query.all()
+    return render_template('user/achievements.html', achievements=articles)
+
+
+@bp.route('/achievements/edit/<int:id>')
+def achievements_edit(id):
+    article = Article.query.get_or_404(id)
+    return render_template('user/achievements_edit.html', achievement=article)
+
+
+@bp.route('/achievements/new/')
+def achievements_new():
+    return render_template('user/achievements_new.html')

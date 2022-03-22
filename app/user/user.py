@@ -55,7 +55,12 @@ def achievements():
 @login_required
 def achievements_edit(id):
     article = Article.query.get_or_404(id)
-    return render_template('user/achievements_edit.html', achievement=article)
+    form = ArticleForm()
+    form.title.data = article.title
+    form.subtitle.data = article.subtitle
+    form.content.data = article.content
+    form.tags.data = article.tags
+    return render_template('user/achievements_edit.html', achievement=article, form=form)
 
 
 @bp.route('/achievements/new/')

@@ -6,7 +6,7 @@ from app import db
 from app.models import User
 from app.user import bp
 
-from app.models import Article
+from app.models import Article, Tag
 from app.user.forms import LoginForm, ArticleForm
 
 
@@ -56,10 +56,12 @@ def achievements():
 def achievements_edit(id):
     article = Article.query.get_or_404(id)
     form = ArticleForm()
-    form.title.data = article.title
-    form.subtitle.data = article.subtitle
-    form.content.data = article.content
-    form.tags.data = article.tags
+    form.title.default = article.title
+    form.subtitle.default = article.subtitle
+    form.content.default = article.content
+    form.tags.choices = Tag.query.all()
+    form.tags.default = article.tags
+    form.process()
     return render_template('user/achievements_edit.html', achievement=article, form=form)
 
 

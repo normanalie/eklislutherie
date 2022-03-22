@@ -69,4 +69,4 @@ def achievements_edit(id):
 @login_required
 def achievements_new():
     form = ArticleForm()
-    return render_template('user/achievements_new.html', form=form)
+    return render_template('user/achievements_edit.html', form=form)

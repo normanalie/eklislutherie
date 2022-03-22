@@ -3,7 +3,11 @@
 {% block content %}
 <div class="container-fluid mt-5">
     <div class="col text-center">
-        <h1>Modifier la réalisation</h1>
+        {% if form.content.default %}
+            <h1>Modifier la réalisation</h1>
+        {% else %}
+            <h1>Nouvelle Réalisation</h1>
+        {% endif %}
     </div>
 
     <form action="" method="post">

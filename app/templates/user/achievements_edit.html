@@ -1,6 +1,16 @@
 {% extends "user/base.html" %}
 
+{% block header %}
+<script src="{{ url_for('static', filename='js/tinymce/tinymce.min.js') }}" referrerpolicy="origin"></script>
+{{ super() }}
+{% endblock %}
+
 {% block content %}
+<script>
+    tinymce.init({
+      selector: '#tinymce'
+    });
+  </script>
 <div class="container-fluid mt-5">
     <div class="col text-center">
         {% if form.content.default %}
@@ -26,7 +36,7 @@
         {{ form.title() }}
         {{ form.subtitle() }}
         {{ form.cover_img() }}
-        {{ form.content() }}
+        {{ form.content(id="tinymce") }}
         {{ form.tags() }}
     </form>
 </div>

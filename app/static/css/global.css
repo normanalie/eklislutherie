@@ -34,7 +34,8 @@ body, html{
         font-weight: normal;
         letter-spacing: 0.02em;
         color: #333333;
-        background-color: #FCFCFC;    
+        background-color: #FCFCFC;   
+        overflow-x: hidden; 
     }
 
     h3 {

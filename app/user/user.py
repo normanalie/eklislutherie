@@ -51,15 +51,23 @@ def achievements():
     return render_template('user/achievements.html', achievements=articles)
 
 
-@bp.route('/achievements/edit/<int:id>')
+@bp.route('/achievements/edit/<int:id>', methods=['GET', 'POST'])
 @login_required
 def achievements_edit(id):
-    article = Article.query.get_or_404(id)
     form = ArticleForm()
+    form.tags.choices = Tag.query.all()
+    article = Article.query.get_or_404(id)
+    print(form.validate_on_submit())
+    if form.validate_on_submit():
+        article.title = form.title.data
+        article.subtitle = form.title.data
+        article.content = form.content.data
+        print(f'---------------------{form.choices.data}')
+        return redirect(url_for('user.achievements'))
+
     form.title.default = article.title
     form.subtitle.default = article.subtitle
     form.content.default = article.content
-    form.tags.choices = Tag.query.all()
     form.tags.default = article.tags
     form.process()
     return render_template('user/achievements_edit.html', achievement=article, form=form)

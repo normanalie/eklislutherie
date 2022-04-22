@@ -11,7 +11,7 @@ class LoginForm(FlaskForm):
 
 class ArticleForm(FlaskForm):
     title = StringField("Title", validators=[DataRequired()])
-    cover_img = FileField("Cover Image", validators=[regexp(u'[^\\s]+(\\.(?i)(jpe?g|png|gif|bmp))$')])
+    cover_img = FileField("Cover Image", validators=[regexp(u'^$|([^\s]+(\.(?i)(jpe?g|png|gif|bmp))$)')])
     subtitle = StringField("Subtitle", validators=[DataRequired()])
     content = TextAreaField("Content", validators=[DataRequired()])
     tags = SelectMultipleField("Tags")

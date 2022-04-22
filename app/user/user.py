@@ -55,20 +55,22 @@ def achievements():
 @login_required
 def achievements_edit(id):
     form = ArticleForm()
-    form.tags.choices = Tag.query.all()
+    form.tags.choices = [(t.id, t.name) for t in Tag.query.all()]
     article = Article.query.get_or_404(id)
     print(form.validate_on_submit())
+    print(form.errors)
     if form.validate_on_submit():
         article.title = form.title.data
-        article.subtitle = form.title.data
+        article.subtitle = form.subtitle.data
         article.content = form.content.data
-        print(f'---------------------{form.choices.data}')
+        article.tags = [Tag.query.get(id) for id in form.tags.data]
+        db.session.commit()
         return redirect(url_for('user.achievements'))
 
     form.title.default = article.title
     form.subtitle.default = article.subtitle
     form.content.default = article.content
-    form.tags.default = article.tags
+    form.tags.default = [t.id for t in article.tags]
     form.process()
     return render_template('user/achievements_edit.html', achievement=article, form=form)
 

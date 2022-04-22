@@ -14,5 +14,5 @@ class ArticleForm(FlaskForm):
     cover_img = FileField("Cover Image", validators=[regexp(u'^$|([^\s]+(\.(?i)(jpe?g|png|gif|bmp))$)')])
     subtitle = StringField("Subtitle", validators=[DataRequired()])
     content = TextAreaField("Content", validators=[DataRequired()])
-    tags = SelectMultipleField("Tags")
+    tags = SelectMultipleField("Tags", coerce=int)
     submit = SubmitField('Save')

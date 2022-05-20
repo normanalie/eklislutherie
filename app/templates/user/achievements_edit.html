@@ -20,7 +20,7 @@
         {% endif %}
     </div>
 
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         {{ form.hidden_tag() }}
 
         {% if errors %}
@@ -35,7 +35,7 @@
 
         {{ form.title() }}
         {{ form.subtitle() }}
-        {{ form.cover_img() }}
+        {{ form.cover_img(accept=".jpeg,.jpg,.png,.gif,.bmp") }}
         {{ form.content(id="tinymce") }}
         {{ form.tags() }}
 

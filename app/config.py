@@ -4,7 +4,7 @@ To start app:
     set FLASK_APP=app
     set FLASK_DEBUG=True
     set FLASK_ENV=development
-    flask run
+    python eklislutherie.py
 """
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))

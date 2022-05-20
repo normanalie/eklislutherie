@@ -1,6 +1,7 @@
-from flask import redirect, render_template, url_for, request
+from flask import current_app, redirect, render_template, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
+from werkzeug.utils import secure_filename
 
 from app import db
 from app.models import User
@@ -56,14 +57,27 @@ def achievements():
 def achievements_edit(id):
     form = ArticleForm()
     form.tags.choices = [(t.id, t.name) for t in Tag.query.all()]
+
     article = Article.query.get_or_404(id)
-    print(form.validate_on_submit())
-    print(form.errors)
+
+    # POST
     if form.validate_on_submit():
+        # Text fields
         article.title = form.title.data
         article.subtitle = form.subtitle.data
         article.content = form.content.data
         article.tags = [Tag.query.get(id) for id in form.tags.data]
+
+        # Cover image
+        img = request.files['cover_img']
+        if img.filename:
+            filename = form.check_image(img)
+            if filename:
+                uri = f"/img/achievements/{id}-{filename}"
+                img.save(f"{current_app.root_path}/static/{uri}")
+                article.cover_img = uri
+
+        # DB
         db.session.commit()
         return redirect(url_for('user.achievements'))
 

@@ -55,6 +55,7 @@ def achievements():
 @bp.route('/achievements/edit/<int:id>', methods=['GET', 'POST'])
 @login_required
 def achievements_edit(id):
+    errors = list()
     form = ArticleForm()
     form.tags.choices = [(t.id, t.name) for t in Tag.query.all()]
 
@@ -62,35 +63,66 @@ def achievements_edit(id):
 
     # POST
     if form.validate_on_submit():
-        # Text fields
-        article.title = form.title.data
-        article.subtitle = form.subtitle.data
-        article.content = form.content.data
-        article.tags = [Tag.query.get(id) for id in form.tags.data]
+        error = fill_article(article, form)
+        if not error:
+            # DB
+            db.session.commit()
+            return redirect(url_for('user.achievements'))
 
-        # Cover image
-        img = request.files['cover_img']
-        if img.filename:
-            filename = form.check_image(img)
-            if filename:
-                uri = f"/img/achievements/{id}-{filename}"
-                img.save(f"{current_app.root_path}/static/{uri}")
-                article.cover_img = uri
-
-        # DB
-        db.session.commit()
-        return redirect(url_for('user.achievements'))
+        errors.append(error)
 
     form.title.default = article.title
     form.subtitle.default = article.subtitle
     form.content.default = article.content
     form.tags.default = [t.id for t in article.tags]
     form.process()
-    return render_template('user/achievements_edit.html', achievement=article, form=form)
+    return render_template('user/achievements_edit.html', achievement=article, form=form, errors=errors)
 
 
-@bp.route('/achievements/new/')
+@bp.route('/achievements/new/', methods=['GET', 'POST'])
 @login_required
 def achievements_new():
+    errors = list()
     form = ArticleForm()
-    return render_template('user/achievements_edit.html', form=form)
+    form.tags.choices = [(t.id, t.name) for t in Tag.query.all()]
+
+    # POST
+    if form.validate_on_submit():
+        article = Article()
+        error = fill_article(article, form)
+        if not error:
+            # DB
+            db.session.add(article)
+            db.session.commit()
+            return redirect(url_for('user.achievements'))
+
+        errors.append(error)
+
+    return render_template('user/achievements_edit.html', form=form, errors=errors)
+
+
+def fill_article(article, form):
+    """
+    Fill the Article class with the form object. 
+    Return None  if success.
+    Return <error_msg> if error.
+    """
+    # Text fields
+    article.title = form.title.data
+    article.subtitle = form.subtitle.data
+    if not form.content.data:
+        return "Content is required"
+    article.content = form.content.data
+    article.tags = [Tag.query.get(id) for id in form.tags.data]
+
+    # Cover image
+    img = request.files['cover_img']
+    if img.filename:
+        filename = form.check_image(img)
+        if not filename:
+            return "Image file is invalid"
+        uri = f"/img/achievements/{id}-{filename}"
+        img.save(f"{current_app.root_path}/static/{uri}")
+        article.cover_img = uri
+
+    return None

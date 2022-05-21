@@ -20,7 +20,7 @@ class ArticleForm(FlaskForm):
     title = StringField("Title", validators=[DataRequired()])
     cover_img = FileField("Cover Image", validators=[])
     subtitle = StringField("Subtitle", validators=[DataRequired()])
-    content = TextAreaField("Content", validators=[DataRequired()])
+    content = TextAreaField("Content", validators=[])  # Could not use DataRequired because tinymce hide this field. Use POST validation.
     tags = SelectMultipleField("Tags", coerce=int)
     submit = SubmitField('Save')
     

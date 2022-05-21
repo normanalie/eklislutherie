@@ -1,5 +1,6 @@
 from flask import current_app, redirect, render_template, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
+import bleach
 from werkzeug.urls import url_parse
 from werkzeug.utils import secure_filename
 
@@ -108,11 +109,11 @@ def fill_article(article, form):
     Return <error_msg> if error.
     """
     # Text fields
-    article.title = form.title.data
-    article.subtitle = form.subtitle.data
+    article.title = bleach.clean(form.title.data)
+    article.subtitle = bleach.clean(form.subtitle.data)
     if not form.content.data:
         return "Content is required"
-    article.content = form.content.data
+    article.content = bleach.clean(form.content.data)
     article.tags = [Tag.query.get(id) for id in form.tags.data]
 
     # Cover image

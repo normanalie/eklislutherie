@@ -113,7 +113,7 @@ def fill_article(article, form):
     article.subtitle = bleach.clean(form.subtitle.data)
     if not form.content.data:
         return "Content is required"
-    article.content = bleach.clean(form.content.data)
+    article.content = form.content.data
     article.tags = [Tag.query.get(id) for id in form.tags.data]
 
     # Cover image

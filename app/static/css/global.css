@@ -311,3 +311,69 @@ body, html{
 
 
     
+    
+/*-------------ACHIEVEMENTS-------------*/
+.achievements {
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+.achievements .title {
+    width: 100%;
+    text-align: center;
+    text-decoration: underline;
+    margin-bottom: 20px;
+}
+
+.slide { 
+    display: flex;
+    overflow-x:scroll;
+    flex-wrap: nowrap;
+}
+
+/*Hide horizontal scrollbar (scroll in JS)*/
+.slide::-webkit-scrollbar {
+    display: none;
+}
+.slide {
+    -ms-overflow-style: none;  /* IE and Edge */
+}
+
+.card {
+    flex: 0 0 auto;
+    margin: 20px;
+    max-width: 300px;
+    height: auto;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+    height: 80%;
+    max-height: 630px;
+    object-fit: cover;
+    object-position: 0 100%;
+}
+
+.card .content {
+    overflow-y: hidden;
+    margin: 10px 10px 0px 10px;
+}
+
+.card-text {
+    max-width: 100%;
+}
+
+.card-seemore{
+    float: right;
+    text-align: right;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.achievements button {
+    margin-top: 20px;
+    margin-bottom: 14px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: 0.3s linear;
+}

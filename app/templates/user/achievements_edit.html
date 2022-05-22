@@ -9,6 +9,7 @@
 <script>
     tinymce.init({
       selector: '#tinymce',
+      min_height: 480,
       toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image emoticons',
       plugins: [
         'advlist autolink lists link image charmap anchor autoresize paste searchreplace',
@@ -52,12 +53,12 @@
                 <label for="title">Titre</label>
                 {{ form.title(class="form-control") }}
                 <br>
-                <label for="cover_img">Image de couverture</label>
-                {{ form.cover_img(class="form-control", accept=".jpeg,.jpg,.png,.gif,.bmp") }}
-            </div>
-            <div class="col-md">
                 <label for="subtitle">Description</label>
                 {{ form.subtitle(class="form-control") }}
+            </div>
+            <div class="col-md">
+                <label for="cover_img">Image de couverture</label>
+                {{ form.cover_img(class="form-control", accept=".jpeg,.jpg,.png,.gif,.bmp") }}
                 <br>
                 <label for="tags">Tags</label>
                 {{ form.tags(class="form-control") }}
@@ -65,8 +66,7 @@
         </div>
         <br>
         {{ form.content(id="tinymce") }}
-
-        
+        <br>
         {{ form.submit(class="btn btn-lg btn-success") }}
     </form>
 </div>

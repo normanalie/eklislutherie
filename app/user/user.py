@@ -1,6 +1,11 @@
-from flask import current_app, redirect, render_template, url_for, request
+from datetime import datetime
+from flask import current_app, jsonify, make_response, redirect, render_template, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
+
 import bleach
+import imghdr
+import re
+
 from werkzeug.urls import url_parse
 from werkzeug.utils import secure_filename
 
@@ -102,6 +107,45 @@ def achievements_new():
     return render_template('user/achievements_edit.html', form=form, errors=errors)
 
 
+@bp.route('/achievements/upload/', methods=['POST'])
+@login_required
+def image_upload():
+    file = request.files.get('file')
+    if file:
+        filename = check_image(file)
+        if not filename:
+            output = make_response(404)
+            output.headers['Error'] = 'Incorrect image file'
+            return output 
+        ts = round(datetime.timestamp(datetime.now()))
+        uri = f"/files/{ts}-{filename}"
+        file.save(f"{current_app.root_path}/static/{uri}")
+        return jsonify({'location' : f'/static/{uri}'})
+    output = make_response(404)
+    output.headers['Error'] = 'Image failed to upload'
+    return output 
+
+
+def check_image(file):
+        """
+        Return a secure filename if image is correct. Otherwise return False.
+        """
+        # Check extension
+        match = re.search('^$|([^\s]+(\.(?i)(jpe?g|png|gif|bmp))$)', file.filename)
+        if not match: 
+            return False
+
+        # Check file header
+        stream = file.stream
+        header = stream.read(512)
+        stream.seek(0)
+        format = imghdr.what(None, header)  # imghdr auto-detect format based on header
+        if not format:
+            return False
+        
+        return secure_filename(file.filename)
+
+
 def fill_article(article, form):
     """
     Fill the Article class with the form object. 
@@ -119,7 +163,7 @@ def fill_article(article, form):
     # Cover image
     img = request.files['cover_img']
     if img.filename:
-        filename = form.check_image(img)
+        filename = check_image(img)
         if not filename:
             return "Image file is invalid"
         uri = f"/img/achievements/{id}-{filename}"

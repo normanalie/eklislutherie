@@ -42,12 +42,29 @@
             </ul>
         </div>
         {% endif %}
+        <div class="row">
+            <div class="col-md justify-content-center">
 
-        {{ form.title() }}
-        {{ form.subtitle() }}
-        {{ form.cover_img(accept=".jpeg,.jpg,.png,.gif,.bmp") }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md">
+                <label for="title">Titre</label>
+                {{ form.title(class="form-control") }}
+                <br>
+                <label for="cover_img">Image de couverture</label>
+                {{ form.cover_img(class="form-control", accept=".jpeg,.jpg,.png,.gif,.bmp") }}
+            </div>
+            <div class="col-md">
+                <label for="subtitle">Description</label>
+                {{ form.subtitle(class="form-control") }}
+                <br>
+                <label for="tags">Tags</label>
+                {{ form.tags(class="form-control") }}
+            </div>
+        </div>
+        <br>
         {{ form.content(id="tinymce") }}
-        {{ form.tags() }}
 
         
         {{ form.submit(class="btn btn-lg btn-success") }}

@@ -31,14 +31,16 @@
 </div>
 <div id="achievements" class="achievements">
     
-    <div class="d-inline-flex justify-content-center flex-wrap">
+    <div class="d-inline-flex justify-content-center flex-wrap mx-5">
         {% for achievement in achievements %}
-            <div class="card p-0" style="max-width: 250px;">
+            <div class="card p-0">
                 <img src="{{ url_for('static', filename=(achievement.cover_img or '/img/achievements/default.jpg')) }}" alt="" onerror="this.src='{{ url_for('static', filename=('img/achievements/default.jpg')) }}'">
                 <div class="card-body">
                     <h3 class="card-title">{{ achievement.title }}</h3>
                     <p class="card-text">{{ achievement.subtitle }}</p>
-                    <a href="{{ achievement.id }}" class="semibold-link card-seemore">Voir Plus</a>
+                    {% if achievement.content and achievement.content != '' %}
+                        <a href="{{ achievement.id }}" class="semibold-link card-seemore">Voir Plus</a>
+                    {% endif %}
                 </div>
             </div>
         {% endfor %} 

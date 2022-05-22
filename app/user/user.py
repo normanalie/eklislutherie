@@ -115,7 +115,8 @@ def achievements_delete(id):
 
     #Cover image
     path = f"{current_app.root_path}/static/{article.cover_img}"
-    os.remove(path)
+    if os.path.exists(path):
+        os.remove(path)
 
     db.session.delete(article)
     db.session.commit()

@@ -112,7 +112,9 @@
             <div class="content">
                 <h3 class="card-title">{{ achievement.title }}</h3>
                 <p class="card-text">{{ achievement.subtitle }}</p>
-                <a href="/achievements/{{achievement.id}}" class="semibold-link card-seemore">Voir Plus</a>
+                {% if achievement.content and achievement.content != '' %}
+                        <a href="/achievements/{{ achievement.id }}" class="semibold-link card-seemore">Voir Plus</a>
+                    {% endif %}
             </div>
         </div>
     {% endfor %}

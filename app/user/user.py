@@ -166,7 +166,8 @@ def fill_article(article, form):
         filename = check_image(img)
         if not filename:
             return "Image file is invalid"
-        uri = f"/img/achievements/{id}-{filename}"
+        ts = round(datetime.timestamp(datetime.now()))
+        uri = f"/img/achievements/{ts}-{filename}"
         img.save(f"{current_app.root_path}/static/{uri}")
         article.cover_img = uri
 

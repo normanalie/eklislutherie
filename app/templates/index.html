@@ -108,7 +108,7 @@
             <div class="card col-sm-3 p-0">
         {% endif %}
 
-        <img src="{{ url_for('static', filename=(achievement.cover_img or 'img/achievements/default.jpg')) }}" alt="">
+        <img src="{{ url_for('static', filename=(achievement.cover_img or '/img/achievements/default.jpg')) }}" alt="" onerror="this.src='{{ url_for('static', filename=('img/achievements/default.jpg')) }}'">
             <div class="content">
                 <h3 class="card-title">{{ achievement.title }}</h3>
                 <p class="card-text">{{ achievement.subtitle }}</p>

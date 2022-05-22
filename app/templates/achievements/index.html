@@ -34,11 +34,7 @@
     <div class="d-inline-flex justify-content-center flex-wrap">
         {% for achievement in achievements %}
             <div class="card p-0" style="max-width: 250px;">
-                {% set img_uri = 'img/achievements/default.jpg' %} 
-                {% if achievement.cover_img and achievement.cover_img != ''  %}
-                    {% set img_uri = achievement.cover_img %}
-                {% endif %}
-                <img src="{{ url_for('static', filename=(img_uri)) }}" alt="">
+                <img src="{{ url_for('static', filename=(achievement.cover_img or '/img/achievements/default.jpg')) }}" alt="" onerror="this.src='{{ url_for('static', filename=('img/achievements/default.jpg')) }}'">
                 <div class="card-body">
                     <h3 class="card-title">{{ achievement.title }}</h3>
                     <p class="card-text">{{ achievement.subtitle }}</p>

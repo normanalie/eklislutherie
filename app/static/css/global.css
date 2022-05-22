@@ -167,7 +167,6 @@ body, html{
         font-family: 'eklis font', 'segoe print', 'arial';
         font-size: calc(3vw + 5vh);
         letter-spacing: 0.2rem;
-        overflow-y: hidden;
     }
 
     h2.hero-subtitle{

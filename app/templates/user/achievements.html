@@ -7,7 +7,7 @@
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Title</th>
+            <th scope="col">Titre</th>
             <th scope="col">Actions</th>
           </tr>
         </thead>
@@ -16,7 +16,9 @@
                 <tr>
                     <th scope="row">{{ achievement.id }}</th>
                     <td>{{ achievement.title }}</td>
-                    <td><a href="{{ url_for('user.achievements_edit',  id=achievement.id) }}">Edit</a></td>
+                    <td><a href="{{ url_for('user.achievements_edit',  id=achievement.id) }}">Editer</a> | 
+                       <a href="{{ url_for('user.achievements_delete',  id=achievement.id) }}">Supprimer</a> |  
+                    </td>
                 </tr>
             {% endfor %} 
         </tbody>

@@ -1,5 +1,6 @@
 from datetime import datetime
-from flask import current_app, jsonify, make_response, redirect, render_template, url_for, request
+import os
+from flask import Response, current_app, jsonify, make_response, redirect, render_template, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
 
 import bleach
@@ -107,6 +108,20 @@ def achievements_new():
     return render_template('user/achievements_edit.html', form=form, errors=errors)
 
 
+@bp.route("/achievements/delete/<int:id>", methods=['GET'])
+@login_required
+def achievements_delete(id):
+    article = Article.query.get_or_404(id)
+
+    #Cover image
+    path = f"{current_app.root_path}/static/{article.cover_img}"
+    os.remove(path)
+
+    db.session.delete(article)
+    db.session.commit()
+    return redirect(url_for('user.achievements'))
+
+
 @bp.route('/achievements/upload/', methods=['POST'])
 @login_required
 def image_upload():
@@ -121,7 +136,7 @@ def image_upload():
         uri = f"/files/{ts}-{filename}"
         file.save(f"{current_app.root_path}/static/{uri}")
         return jsonify({'location' : f'/static/{uri}'})
-    output = make_response(404)
+    output = Response(status=404)
     output.headers['Error'] = 'Image failed to upload'
     return output 
 
@@ -167,7 +182,7 @@ def fill_article(article, form):
         if not filename:
             return "Image file is invalid"
         ts = round(datetime.timestamp(datetime.now()))
-        uri = f"/img/achievements/{ts}-{filename}"
+        uri = f"/files/{ts}-{filename}"
         img.save(f"{current_app.root_path}/static/{uri}")
         article.cover_img = uri
 

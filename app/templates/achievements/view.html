@@ -4,7 +4,8 @@
 
 {% set cover_img = (achievement.cover_img or '/img/achievements/default.jpg' ) %}
 <div class="hero-header" style="
-            background-position: center center;
+            max-height: 500px;
+            background-position:  50% 75%;
             background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('/static/{{ cover_img }}')
     ">
     <div class="menu">

@@ -13,7 +13,7 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Connexion')
 
 
-class SignupForm(FlaskForm):  # Create a admin user the first time the app is launched
+class SignupForm(FlaskForm): 
     username = StringField("Nom d'utilisateur", validators=[DataRequired()])
     email = EmailField("Email", validators=[DataRequired()])
     password = PasswordField("Mot de passe", validators=[DataRequired()])
@@ -21,3 +21,9 @@ class SignupForm(FlaskForm):  # Create a admin user the first time the app is la
     is_admin = BooleanField("Administrateur", default=False)
     is_active = BooleanField("Actif", default=True)
     submit = SubmitField("Créer")
+
+
+class EditForm(SignupForm): 
+    password = PasswordField("Mot de passe", validators=[])
+    password_confirmation = PasswordField("Répeter le mot de passe", validators=[EqualTo('password')])
+    submit = SubmitField("Modifier")

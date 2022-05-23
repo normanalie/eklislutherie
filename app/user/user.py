@@ -13,7 +13,7 @@ from app.models import User
 from app.user import bp
 
 from app.models import Tag
-from app.user.forms import LoginForm, SignupForm
+from app.user.forms import EditForm, LoginForm, SignupForm
 
 
 @bp.route('/')
@@ -56,10 +56,41 @@ def manage():
     return render_template('user/manage.html', users=users)
 
 
-@bp.route('/manage/<int:id>')
+@bp.route('/manage/<int:id>', methods=['GET', 'POST'])
 @login_required
 def edit(id):
-    pass
+    form = EditForm()
+    errors = []
+
+    u = User.query.get_or_404(id)
+
+    if request.method == 'POST':
+        if form.password.data != form.password_confirmation.data:
+            errors.append('Les mots de passes ne correspondent pas')
+    print(form.errors)
+    print(form.validate())
+    if form.validate_on_submit():
+        u.username = bleach.clean(form.username.data)
+        email = bleach.clean(form.email.data)
+        if not check_email_format(email):
+            errors.append('Email invalide')
+        else:
+            u.email = email
+            u.is_admin = form.is_admin.data
+            u.is_active = form.is_active.data
+            u.set_password(form.password.data)
+
+            db.session.commit()
+            return redirect(url_for('user.manage'))
+
+    form.username.default = u.username
+    form.email.default = u.email
+    form.is_admin.default = u.is_admin
+    form.is_active.default = u.is_active
+    form.process()
+
+    return render_template('user/edit.html', form=form, errors=errors)
+
 
 
 @bp.route('/manage/new/', methods=['GET', 'POST'])
@@ -67,7 +98,7 @@ def edit(id):
 def new():
     form = SignupForm()
     errors = []
-    print(request.method)
+
     if request.method == 'POST':
         if form.password.data != form.password_confirmation.data:
             errors.append('Les mots de passes ne correspondent pas')

@@ -6,7 +6,6 @@ from app.models import Article, User
 from app.user.forms import SignupForm
 
 @bp.route('/')
-@bp.route('/index/')
 def index():
     articles = Article.query.limit(10).all()
     return render_template("index.html", achievements=articles)

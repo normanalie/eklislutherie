@@ -9,7 +9,7 @@ from app.models import User
 from app.user import bp
 
 from app.models import Tag
-from app.user.forms import LoginForm
+from app.user.forms import LoginForm, SignupForm
 
 
 @bp.route('/')
@@ -43,5 +43,40 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('main.index'))
+
+
+@bp.route('/manage/')
+@login_required
+def manage():
+    users = User.query.all()
+    return render_template('user/manage.html', users=users)
+
+
+@bp.route('/manage/<int:id>')
+@login_required
+def edit(id):
+    pass
+
+
+@bp.route('/manage/new/')
+@login_required
+def new():
+    form = SignupForm()
+    return render_template('user/edit.html', form=form)
+
+
+@bp.route('/account/')
+@login_required
+def account():
+    pass
+
+
+@bp.route('/delete/<int:id>')
+@login_required
+def delete(id):
+    u = User.query.get_or_404(id)
+    db.session.delete(u)
+    db.session.commit()
+    return redirect(url_for('user.manage'))
 
 

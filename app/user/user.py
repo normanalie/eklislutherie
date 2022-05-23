@@ -6,6 +6,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 import bleach
 import imghdr
 import re
+from sqlalchemy.exc import SQLAlchemyError, PendingRollbackError
 
 from werkzeug.urls import url_parse
 from werkzeug.utils import secure_filename
@@ -15,7 +16,7 @@ from app.models import User
 from app.user import bp
 
 from app.models import Article, Tag
-from app.user.forms import LoginForm, ArticleForm
+from app.user.forms import LoginForm, ArticleForm, TagForm
 
 
 @bp.route('/')
@@ -140,6 +141,39 @@ def image_upload():
     output = Response(status=404)
     output.headers['Error'] = 'Image failed to upload'
     return output 
+
+
+@bp.route('/tags/', methods=["GET", "POST"])
+@bp.route('/tags/<int:id>', methods=["GET", "POST"])
+@login_required
+def tags(id=None):
+    form = TagForm()
+    tag = None
+    if id:
+        tag = Tag.query.get_or_404(id)
+
+    if form.validate_on_submit():
+        if id:
+            tag.name = form.name.data
+        else:
+            tag = Tag(name=form.name.data)
+            if not Tag.query.filter_by(name=tag.name).first():  # not Already exist
+                db.session.add(tag)
+            
+        db.session.commit()
+        tag = None
+    
+    tags = Tag.query.all()
+    return render_template('user/tags.html', form=form, tags=tags, current_tag=tag)
+
+
+@bp.route('/tags/delete/<int:id>', methods=['GET'])
+@login_required
+def tags_delete(id):
+    tag = Tag.query.get_or_404(id)
+    db.session.delete(tag)
+    db.session.commit()
+    return redirect(url_for('user.tags'))
 
 
 def check_image(file):

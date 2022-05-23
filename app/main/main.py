@@ -1,8 +1,9 @@
-from flask import render_template
+from flask import redirect, render_template, request, url_for
 
 from app import db
 from app.main import bp
-from app.models import Article
+from app.models import Article, User
+from app.user.forms import SignupForm
 
 @bp.route('/')
 @bp.route('/index/')
@@ -17,3 +18,25 @@ def contact():
 @bp.route('/legals/')
 def legals():
     return render_template("legals.html")
+
+
+@bp.before_app_request
+def firstconnection():
+    if len(User.query.all()) == 0:  # No user in db
+        form = SignupForm()
+        errors = []
+
+        if form.validate_on_submit():
+            username = form.username.data
+            email = form.email.data
+            password = form.password.data
+            u = User(username=username, email=email, is_admin=True)
+            u.set_password(password)
+            db.session.add(u)
+            db.session.commit()
+            return redirect(url_for('user.login'))
+        
+        if request.method == 'POST' and not form.validate():
+            errors.append(form.errors)
+
+        return render_template('user/firstconnection.html', form=form, errors=errors)

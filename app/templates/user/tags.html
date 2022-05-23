@@ -1,0 +1,53 @@
+{% extends "user/base.html" %}
+
+{% block content %}
+<div class="container-fluid mt-5 px-5">
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <div class="row">
+            <div class="col-3">
+                {{ form.name(class="form-control", value=(current_tag.name or '')) }}
+            </div>
+            {% if current_tag %}
+                <div class="col-2">
+                    {{ form.submit(class="form-control btn btn-success", value="Modifier") }}
+                </div>
+                <div class="col-2">
+                    <a href="{{ url_for('user.tags') }}"><input type="button" class="form-control btn btn-primary" value="Annuler"/></a>
+                </div>
+            {% else %}
+                <div class="col-2">
+                    {{ form.submit(class="form-control btn btn-success") }}
+                </div>
+                    
+            {% endif %}
+        </div>
+        
+        
+
+    </form>
+    <table class="table mt-3">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for tag in tags %}
+                <tr>
+                    <th scope="row">{{ tag.id }}</th>
+                    <td>{{ tag.name }}</td>
+                    <td>
+                        <a href="{{ tag.id }}">Editer</a> | 
+                        <a href="{{ url_for('user.tags_delete',  id=tag.id) }}">Supprimer</a> |  
+                     </td>
+                </tr>
+            {% endfor %} 
+        </tbody>
+      </table>
+
+</div>
+
+{% endblock %}

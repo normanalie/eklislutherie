@@ -1,6 +1,6 @@
 import bleach
-from flask import redirect, render_template, request, url_for
-from flask_login import login_required
+from flask import abort, redirect, render_template, request, url_for
+from flask_login import current_user, login_required
 
 from app import db
 from app.tags import bp
@@ -12,6 +12,8 @@ from .forms import TagForm
 @bp.route('/<int:id>', methods=["GET", "POST"])
 @login_required
 def index(id=None):
+    if not current_user.is_admin:
+        abort(403) 
     form = TagForm()
     tag = None
     if id:
@@ -35,6 +37,8 @@ def index(id=None):
 @bp.route('/delete/<int:id>', methods=['GET'])
 @login_required
 def delete(id):
+    if not current_user.is_admin:
+        abort(403) 
     tag = Tag.query.get_or_404(id)
     db.session.delete(tag)
     db.session.commit()

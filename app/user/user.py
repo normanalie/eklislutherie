@@ -52,6 +52,8 @@ def logout():
 @bp.route('/manage/')
 @login_required
 def manage():
+    if not current_user.is_admin:
+        abort(403) 
     users = User.query.all()
     return render_template('user/manage.html', users=users)
 
@@ -61,7 +63,7 @@ def manage():
 def edit(id):
     if not current_user.is_admin and current_user.id != id:
         abort(403) 
-        
+
     form = EditForm()
     errors = []
 
@@ -90,6 +92,8 @@ def edit(id):
 @bp.route('/manage/new/', methods=['GET', 'POST'])
 @login_required
 def new():
+    if not current_user.is_admin:
+        abort(403) 
     form = SignupForm()
     errors = []
 
@@ -117,6 +121,8 @@ def account():
 @bp.route('/delete/<int:id>')
 @login_required
 def delete(id):
+    if not current_user.is_admin:
+        abort(403) 
     u = User.query.get_or_404(id)
     db.session.delete(u)
     db.session.commit()

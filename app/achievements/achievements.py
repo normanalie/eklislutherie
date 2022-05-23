@@ -4,8 +4,8 @@ import os
 import re
 import bleach
 
-from flask import Response, current_app, jsonify, make_response, redirect, render_template, url_for, request
-from flask_login import login_required
+from flask import Response, abort, current_app, jsonify, make_response, redirect, render_template, url_for, request
+from flask_login import current_user, login_required
 
 from werkzeug.utils import secure_filename
 
@@ -32,6 +32,8 @@ def view(id):
 @bp.route('/edit/')
 @login_required
 def list():
+    if not current_user.is_admin:
+        abort(403) 
     articles = Article.query.all()
     return render_template('achievements/list.html', achievements=articles)
 
@@ -39,6 +41,8 @@ def list():
 @bp.route('/edit/<int:id>', methods=['GET', 'POST'])
 @login_required
 def edit(id):
+    if not current_user.is_admin:
+        abort(403) 
     errors = []
     form = ArticleForm()
     form.tags.choices = [(t.id, t.name) for t in Tag.query.all()]
@@ -66,6 +70,8 @@ def edit(id):
 @bp.route('/new/', methods=['GET', 'POST'])
 @login_required
 def new():
+    if not current_user.is_admin:
+        abort(403) 
     errors = []
     form = ArticleForm()
     form.tags.choices = [(t.id, t.name) for t in Tag.query.all()]
@@ -88,6 +94,8 @@ def new():
 @bp.route("/delete/<int:id>", methods=['GET'])
 @login_required
 def delete(id):
+    if not current_user.is_admin:
+        abort(403) 
     article = Article.query.get_or_404(id)
 
     #Cover image
@@ -103,6 +111,8 @@ def delete(id):
 @bp.route('/upload/', methods=['POST'])
 @login_required
 def image_upload():
+    if not current_user.is_admin:
+        abort(403) 
     file = request.files.get('file')
     if file:
         filename = check_image(file)

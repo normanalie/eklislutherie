@@ -20,8 +20,3 @@ class SignupForm(FlaskForm):  # Create a admin user the first time the app is la
     password_confirmation = PasswordField("Répeter le mot de passe", validators=[EqualTo('password')])
     is_admin = BooleanField("Administrateur", default=False)
     submit = SubmitField("Créer")
-
-
-class TagForm(FlaskForm):
-    name = StringField("Nom", validators=[DataRequired()])
-    submit = SubmitField('Enregistrer')

@@ -13,7 +13,7 @@
                     {{ form.submit(class="form-control btn btn-success", value="Modifier") }}
                 </div>
                 <div class="col-2">
-                    <a href="{{ url_for('user.tags') }}"><input type="button" class="form-control btn btn-primary" value="Annuler"/></a>
+                    <a href="{{ url_for('tags.index') }}"><input type="button" class="form-control btn btn-primary" value="Annuler"/></a>
                 </div>
             {% else %}
                 <div class="col-2">
@@ -40,8 +40,8 @@
                     <th scope="row">{{ tag.id }}</th>
                     <td>{{ tag.name }}</td>
                     <td>
-                        <a href="{{ tag.id }}">Editer</a> | 
-                        <a href="{{ url_for('user.tags_delete',  id=tag.id) }}">Supprimer</a> |  
+                        <a href="{{ url_for('tags.index',  id=tag.id) }}">Editer</a> | 
+                        <a href="{{ url_for('tags.delete',  id=tag.id) }}">Supprimer</a> |  
                      </td>
                 </tr>
             {% endfor %} 

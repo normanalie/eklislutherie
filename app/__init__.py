@@ -9,7 +9,7 @@ login = LoginManager()
 login.login_view = 'user.login'
 
 from app import models
-from . import main, user, achievements
+from . import main, user, achievements, tags
 
 
 def create_app():
@@ -24,5 +24,6 @@ def create_app():
     app.register_blueprint(main.bp)
     app.register_blueprint(user.bp)
     app.register_blueprint(achievements.bp)
+    app.register_blueprint(tags.bp)
 
     return app

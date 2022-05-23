@@ -13,7 +13,6 @@ from app.user.forms import LoginForm, TagForm
 
 
 @bp.route('/')
-@bp.route('/index/')
 def index():
     return render_template('user/index.html')
 

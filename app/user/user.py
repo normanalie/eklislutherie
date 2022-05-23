@@ -1,7 +1,7 @@
 from distutils.log import error
 import re
 import bleach
-from flask import  redirect, render_template, url_for, request
+from flask import  abort, redirect, render_template, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
 from sqlalchemy.exc import IntegrityError
 
@@ -59,6 +59,9 @@ def manage():
 @bp.route('/manage/<int:id>', methods=['GET', 'POST'])
 @login_required
 def edit(id):
+    if not current_user.is_admin and current_user.id != id:
+        abort(403) 
+        
     form = EditForm()
     errors = []
 

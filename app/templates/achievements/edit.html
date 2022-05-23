@@ -18,7 +18,7 @@
       ],
       imagetools_cors_hosts: ['google.com', 'dropbox.com', 'eklislutherie.re', '127.0.0.1'],
       quickbars_selection_toolbar: 'bold italic | formatselect | quicklink blockquote',
-      images_upload_url: '../upload/'
+      images_upload_url: "{{ url_for('achievements.image_upload')}}"
     });
 </script>
 

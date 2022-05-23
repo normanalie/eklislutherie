@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="container-fluid mt-5 px-5">
-    <a href="{{ url_for('user.achievements_new') }}"><button class="btn btn-success">Nouveau</button></a>
+    <a href="{{ url_for('achievements.new') }}"><button class="btn btn-success">Nouveau</button></a>
     <table class="table mt-3">
         <thead>
           <tr>
@@ -16,8 +16,8 @@
                 <tr>
                     <th scope="row">{{ achievement.id }}</th>
                     <td>{{ achievement.title }}</td>
-                    <td><a href="{{ url_for('user.achievements_edit',  id=achievement.id) }}">Editer</a> | 
-                       <a href="{{ url_for('user.achievements_delete',  id=achievement.id) }}">Supprimer</a> |  
+                    <td><a href="{{ url_for('achievements.edit',  id=achievement.id) }}">Editer</a> | 
+                       <a href="{{ url_for('achievements.delete',  id=achievement.id) }}">Supprimer</a> |  
                     </td>
                 </tr>
             {% endfor %} 

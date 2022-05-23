@@ -108,7 +108,7 @@ def new():
 @bp.route('/account/')
 @login_required
 def account():
-    pass
+    return redirect(url_for('user.edit', id=current_user.id))
 
 
 @bp.route('/delete/<int:id>')

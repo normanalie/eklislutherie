@@ -1,5 +1,9 @@
+from distutils.log import error
+import re
+import bleach
 from flask import  redirect, render_template, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
+from sqlalchemy.exc import IntegrityError
 
 
 from werkzeug.urls import url_parse
@@ -58,11 +62,34 @@ def edit(id):
     pass
 
 
-@bp.route('/manage/new/')
+@bp.route('/manage/new/', methods=['GET', 'POST'])
 @login_required
 def new():
     form = SignupForm()
-    return render_template('user/edit.html', form=form)
+    errors = []
+    print(request.method)
+    if request.method == 'POST':
+        if form.password.data != form.password_confirmation.data:
+            errors.append('Les mots de passes ne correspondent pas')
+    if form.validate_on_submit():
+        u = User()
+        u.username = bleach.clean(form.username.data)
+        email = bleach.clean(form.email.data)
+        if not check_email_format(email):
+            errors.append('Email invalide')
+        elif not check_email_db(email):
+            errors.append('Email déjà utilisé')
+        else:
+            u.email = email
+            u.is_admin = form.is_admin.data
+            u.is_active = form.is_active.data
+            u.set_password(form.password.data)
+
+            db.session.add(u)
+            db.session.commit()
+            return redirect(url_for('user.manage'))
+
+    return render_template('user/edit.html', form=form, errors=errors)
 
 
 @bp.route('/account/')
@@ -79,4 +106,13 @@ def delete(id):
     db.session.commit()
     return redirect(url_for('user.manage'))
 
+def check_email_format(email):
+    regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+    return re.fullmatch(regex, email)
 
+
+def check_email_db(email):
+    u = User.query.filter_by(email=email).first()
+    return False if u else True
+
+    

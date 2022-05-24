@@ -97,13 +97,14 @@
 
 <div id="achievements" class="achievements">
     <h3 class="title">Nos réalisations</h3>
-    <div id="slide-cart" class="slide row justify-content-center">
+    <div id="slide-cart" class="slide row">
     <div class="col-sm-2 d-none d-md-block"></div>
-    {% set first_article = true %}
+
+    {% set vars = {'first': True} %}
     {% for achievement in achievements %}
-        {% if first_article %}
+        {% if vars.first %}
             <div id="first-card" class="card col-sm-3 p-0">
-            {% set first_article = false %}
+            {% if vars.update({'first': False}) %}{% endif %}
         {% else %}
             <div class="card col-sm-3 p-0">
         {% endif %}

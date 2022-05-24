@@ -31,6 +31,14 @@ class Action(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), nullable=False, unique=True)
 
+    def create_table():
+        if Action.query.first() == None:
+            actions=['login', 'logout', 'create', 'delete', 'update', 'publish', 'unpublish']
+            for action in actions:
+                a = Action(name=action)
+                db.session.add(a)
+            db.session.commit()
+
     def __repr__(self):
         return f'<Action: {self.name}>'
 

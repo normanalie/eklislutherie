@@ -2,7 +2,7 @@ from flask import redirect, render_template, request, url_for
 
 from app import db
 from app.main import bp
-from app.models import Article, User
+from app.models import Action, Article, User
 from app.user.forms import SignupForm
 
 @bp.route('/')
@@ -18,6 +18,11 @@ def contact():
 def legals():
     return render_template("legals.html")
 
+@bp.before_app_first_request
+def firstrequest():
+    print('First Request -- Creating and initializing DB')
+    db.create_all()
+    Action.create_table()
 
 @bp.before_app_request
 def firstconnection():

@@ -9,8 +9,12 @@ To start app:
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-SECRET_KEY = os.environ.get('SECRET_KEY') or 'yTnSN65a'
+SERVER_NAME=os.getenv('SERVER_NAME')
+APPLICATION_ROOT=os.getenv('APPLICATION_ROOT') or '/'
+PREFERRED_URL_SCHEME="https"
 
-SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
+SECRET_KEY = os.getenv('SECRET_KEY') or 'fakeSecretKeyToChangeInProduction'
+
+SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL')  or \
         'sqlite:///' + os.path.join(basedir, 'app.db')
 SQLALCHEMY_TRACK_MODIFICATIONS = False

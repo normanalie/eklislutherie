@@ -1,0 +1,97 @@
+{% extends "user/base.html" %}
+
+{% block header %}
+<script src="{{ url_for('static', filename='js/tinymce-5.10.4/tinymce.min.js') }}" referrerpolicy="origin"></script>
+{{ super() }}
+{% endblock %}
+
+{% block content %}
+<script>
+    tinymce.init({
+      selector: '#tinymce',
+      min_height: 480,
+      toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image emoticons',
+      plugins: [
+        'advlist autolink lists link image charmap anchor autoresize paste searchreplace',
+        'searchreplace visualblocks fullscreen quickbars',
+        'insertdatetime media codesample table paste imagetools wordcount hr emoticons nonbreaking toc'
+      ],
+      imagetools_cors_hosts: ['google.com', 'dropbox.com', 'eklislutherie.re', '127.0.0.1'],
+      quickbars_selection_toolbar: 'bold italic | formatselect | quicklink blockquote',
+      images_upload_url: "{{ url_for('achievements.image_upload')}}"
+    });
+</script>
+
+<div class="container-fluid mt-5">
+    <div class="col text-center">
+        {% if form.email.default %}
+            <h1>Modifier l'utilisateur</h1>
+        {% else %}
+            <h1>Nouvel utilisateur</h1>
+        {% endif %}
+    </div>
+
+    <form action="" method="post" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+
+        {% if errors %}
+        <div class="form-group alert alert-danger">
+            <ul>
+                {% for error in errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-md">
+                <div class="my-2">
+                    {{ form.username.label(class="visually-hidden") }}
+                    {{ form.username(size=64, class="form-control", placeholder="Nom d'utilisateur", autofocus='') }}
+                </div>
+                
+                <div class="my-2">
+                    {{ form.email.label(class="visually-hidden") }}
+                    {{ form.email(size=64, class="form-control", placeholder="Adresse email", autofocus='') }}
+                </div>
+                
+                <div class="my-2">
+                    {{ form.password.label(class="visually-hidden") }}
+                    {{ form.password(class="form-control", placeholder="Mot de passe") }}
+                </div>
+                
+                <div class="my-2">
+                    {{ form.password_confirmation.label(class="visually-hidden") }}
+                    {{ form.password_confirmation(class="form-control", placeholder="Répeter le mot de passe") }}
+                </div>
+
+                <div class="row">
+                    <div class="my-2 col">
+                        {{ form.is_admin()}}
+                        {{ form.is_admin.label }}
+                    </div>
+                    <div class="my-2 col">
+                        {{ form.is_active()}}
+                        {{ form.is_active.label }}
+                    </div>
+                </div>
+                
+
+
+                <div class="d-grid">
+                    {% if form.email.default %}
+                    {{ form.submit(class="btn btn-lg btn-primary", value="Enregistrer") }}
+                    {% else %}
+                        {{ form.submit(class="btn btn-lg btn-primary") }}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-2"></div>
+        </div>
+        
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,42 @@
+/*-------------ABOUT-------------*/
+    .about{
+        min-height: 80%;  
+    }
+
+    .about .parts {
+        margin: 40px 0px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .about .part {
+        padding: 10px 0px;
+        flex:auto;
+    }
+    
+    .about .part p {
+        margin-top: 6px;
+        margin-left: 4%;
+    }
+    .about .part .icon{
+       width: 8vw;
+       max-width: 65px;
+    }
+
+    .about .background-image {
+        background: linear-gradient(90deg, #FCFCFC 0%, rgba(252, 252, 252, 0) 98.49%), 
+                    linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), 
+                    url('../img/René Carayol/Eklis-202012-ST-001 RC34-BD.jpg');
+        background-repeat: no-repeat;
+        background-position: top right;
+        background-size: cover;  
+        z-index: 0; /*prevent border line between div and linear gradient*/
+    }
+
+    @media all and (max-width: 768px) {
+        .about .part {
+            padding-right: 18px;
+            padding-left: 18px;
+        }
+    }
+

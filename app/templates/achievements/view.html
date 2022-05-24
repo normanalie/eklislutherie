@@ -1,0 +1,47 @@
+{% extends "achievements/base.html" %}
+
+{% block content %}
+
+{% set cover_img = (achievement.cover_img or '/img/achievements/default.jpg' ) %}
+<div class="hero-header" style="
+            max-height: 500px;
+            background-position:  50% 75%;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('/static/{{ cover_img }}')
+    ">
+    <div class="menu">
+        <div class="left">
+            <a href="/"><img src="{{ url_for('static', filename='icons/logo-color.svg') }}" alt="Logo Eklis Lutherie. E en forme de guitare."></a>
+        </div>
+        <div class="right">
+            <ul>
+                <li>
+                    <a class="semibold-link" href="{{ url_for('main.index') }}">
+                    Accueil
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="hero-content">
+        <h1 class="hero-title">{{ achievement.title }}</h1>
+        <h2 class="hero-subtitle">
+            {{ achievement.subtitle }}
+        </h2>
+    </div>
+</div>
+<br>
+<div class="row justify-content-center">
+    <div class="col-8">
+        <h3>{{ achievement.title }}</h3>
+        {% for tag in achievement.tags %}
+            <span class="badge rounded-pill bg-primary">{{ tag.name }}</span>
+        {% endfor %}
+        <div class="mt-2 mx-2">
+            {{ achievement.content|safe }}
+        </div>
+        
+    </div>
+</div>
+
+
+{% endblock %}

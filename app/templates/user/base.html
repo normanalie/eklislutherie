@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block header %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/user/global.css') }}">
+<header class="flex-column">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark flex-md-row py-2 px-3">
+        <a class="navbar-brand" href="{{ url_for('user.index') }}">
+            <img src="{{ url_for('static', filename='icons/logo-color.svg') }}" height="50" class="d-inline-block" alt="">
+            Eklis Lutherie
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="#navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="navbar collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('user.index') }}">Accueil</a>
+            </li>
+            {% if not(current_user.is_anonymous) %}
+                <li><a class="nav-link" href="{{ url_for('achievements.list') }}">Réalisations</a></li>
+                <li><a class="nav-link" href="{{ url_for('tags.index') }}">Tags</a></li>
+                <li><a class="nav-link" href="{{ url_for('user.manage') }}">Utilisateurs</a></li>
+            {% endif %}
+          </ul>
+            <ul class="navbar-nav justify-content-end">
+                {% if current_user.is_anonymous %}
+                <li class="nav-item">
+                    <button class="btn btn-outline-success btn-sm" onclick="location.href='{{ url_for('user.login') }}'">Connexion</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <span class="nav-link disabled">{{ current_user.email }}</span>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-outline-secondary btn-sm" onclick="location.href='{{ url_for('user.logout') }}'">Deconnexion</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+</header>
+{% endblock %}

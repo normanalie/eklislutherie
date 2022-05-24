@@ -1,0 +1,44 @@
+{% extends "user/base.html" %}
+
+{% block content %}
+<div class="container-fluid mt-5 px-5">
+    <a href="{{ url_for('user.new') }}"><button class="btn btn-success">Nouveau</button></a>
+    <table class="table mt-3">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Email</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <th scope="row">
+                        {% if user.is_admin %}
+                            <span class="badge rounded-pill bg-primary">{{ user.id }}</span>
+                        {% else %}
+                            {{ user.id }}
+                        {% endif %}
+                    </th>
+                    <td>
+                        {% if not user.is_active %}
+                            <del>{{ user.username }}</del>
+                        {% else %}
+                            {{ user.username }}
+                        {% endif %}
+                    </td>
+                    <td>{{ user.email }}</td>
+                    <td>
+                        <a href="{{ url_for('user.edit',  id=user.id) }}">Editer</a> | 
+                        <a href="{{ url_for('user.delete',  id=user.id) }}">Supprimer</a> |  
+                     </td>
+                </tr>
+            {% endfor %} 
+        </tbody>
+      </table>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "user/base.html" %}
+
+{% block content %}
+<div class="container-fluid mt-5 px-5">
+    <a href="{{ url_for('achievements.new') }}"><button class="btn btn-success">Nouveau</button></a>
+    <table class="table mt-3">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Titre</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for achievement in achievements %}
+                <tr>
+                    <th scope="row">{{ achievement.id }}</th>
+                    <td>{{ achievement.title }}</td>
+                    <td><a href="{{ url_for('achievements.edit',  id=achievement.id) }}">Editer</a> | 
+                       <a href="{{ url_for('achievements.delete',  id=achievement.id) }}">Supprimer</a> |  
+                    </td>
+                </tr>
+            {% endfor %} 
+        </tbody>
+      </table>
+
+</div>
+
+{% endblock %}

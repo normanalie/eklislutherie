@@ -1,0 +1,74 @@
+{% extends "user/base.html" %}
+
+{% block header %}
+<script src="{{ url_for('static', filename='js/tinymce-5.10.4/tinymce.min.js') }}" referrerpolicy="origin"></script>
+{{ super() }}
+{% endblock %}
+
+{% block content %}
+<script>
+    tinymce.init({
+      selector: '#tinymce',
+      min_height: 480,
+      toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image emoticons',
+      plugins: [
+        'advlist autolink lists link image charmap anchor autoresize paste searchreplace',
+        'searchreplace visualblocks fullscreen quickbars',
+        'insertdatetime media codesample table paste imagetools wordcount hr emoticons nonbreaking toc'
+      ],
+      imagetools_cors_hosts: ['google.com', 'dropbox.com', 'eklislutherie.re', '127.0.0.1'],
+      quickbars_selection_toolbar: 'bold italic | formatselect | quicklink blockquote',
+      images_upload_url: "{{ url_for('achievements.image_upload')}}"
+    });
+</script>
+
+<div class="container-fluid mt-5">
+    <div class="col text-center">
+        {% if form.content.default %}
+            <h1>Modifier la réalisation</h1>
+        {% else %}
+            <h1>Nouvelle Réalisation</h1>
+        {% endif %}
+    </div>
+
+    <form action="" method="post" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+
+        {% if errors %}
+        <div class="form-group alert alert-danger">
+            <ul>
+                {% for error in errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        <div class="row">
+            <div class="col-md justify-content-center">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md">
+                <label for="title">Titre</label>
+                {{ form.title(class="form-control") }}
+                <br>
+                <label for="subtitle">Description</label>
+                {{ form.subtitle(class="form-control") }}
+            </div>
+            <div class="col-md">
+                <label for="cover_img">Image de couverture</label>
+                {{ form.cover_img(class="form-control", accept=".jpeg,.jpg,.png,.gif,.bmp") }}
+                <br>
+                <label for="tags">Tags</label>
+                {{ form.tags(class="form-control") }}
+            </div>
+        </div>
+        <br>
+        {{ form.content(id="tinymce") }}
+        <br>
+        {{ form.submit(class="btn btn-lg btn-success") }}
+    </form>
+</div>
+
+{% endblock %}

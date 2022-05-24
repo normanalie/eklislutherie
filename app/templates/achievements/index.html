@@ -1,0 +1,50 @@
+{% extends "achievements/base.html" %}
+
+{% block title %}Réalisations - Eklis Lutherie{% endblock %}
+
+
+{% block content %}
+<div class="hero-header" style="max-height: 500px;">
+    <div class="">
+        <div class="menu">
+            <div class="left">
+                <a href="/"><img src="{{ url_for('static', filename='icons/logo-color.svg') }}" alt="Logo Eklis Lutherie. E en forme de guitare."></a>
+            </div>
+            <div class="right">
+                <ul>
+                    <li>
+                        <a class="semibold-link" href="{{ url_for('main.index') }}">
+                        Accueil
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="hero-content">
+        <h1 class="hero-title">Eklis Lutherie</h1>
+        <h1 class="hero-subtitle">
+            Nos réalisations
+        </h1>
+        
+    </div>
+</div>
+<div id="achievements" class="achievements">
+    
+    <div class="d-inline-flex justify-content-center flex-wrap mx-5">
+        {% for achievement in achievements %}
+            <div class="card p-0">
+                <img src="{{ url_for('static', filename=(achievement.cover_img or '/img/achievements/default.jpg')) }}" alt="" onerror="this.src='{{ url_for('static', filename=('img/achievements/default.jpg')) }}'">
+                <div class="card-body">
+                    <h3 class="card-title">{{ achievement.title }}</h3>
+                    <p class="card-text">{{ achievement.subtitle }}</p>
+                    {% if achievement.content and achievement.content != '' %}
+                        <a href="{{ achievement.id }}" class="semibold-link card-seemore">Voir Plus</a>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %} 
+    </div>
+</div>
+
+{% endblock %}

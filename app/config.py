@@ -9,6 +9,7 @@ To start app:
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
+
 SERVER_NAME=os.getenv('SERVER_NAME')
 APPLICATION_ROOT=os.getenv('APPLICATION_ROOT') or '/'
 PREFERRED_URL_SCHEME="https"

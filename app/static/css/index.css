@@ -26,7 +26,7 @@
     .about .background-image {
         background: linear-gradient(90deg, #FCFCFC 0%, rgba(252, 252, 252, 0) 98.49%), 
                     linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), 
-                    url('../img/René Carayol/Eklis-202012-ST-001 RC34-BD.jpg');
+                    url('../img/bg-about.jpg');
         background-repeat: no-repeat;
         background-position: top right;
         background-size: cover;  

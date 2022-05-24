@@ -157,7 +157,7 @@ def fill_user(user, form, new=True):
         return 'Vous ne pouvez pas changer vos droits administrateur'
     user.is_admin = form.is_admin.data
 
-    if current_user.id == user.id and form.is_active != user.is_active: 
+    if current_user.id == user.id and form.is_active.data != user.is_active: 
         return "Vous ne pouvez pas changer votre status"
     user.is_active = form.is_active.data
 

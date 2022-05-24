@@ -353,7 +353,6 @@ body, html{
 }
 
 .card .content {
-    overflow-y: hidden;
     margin: 10px 10px 0px 10px;
 }
 

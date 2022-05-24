@@ -21,3 +21,4 @@ __pycache__
 *.db
 app/app.db
 app/static/files/*
+!app/static/files/.gitkeep

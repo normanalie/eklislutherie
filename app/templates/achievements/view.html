@@ -1,6 +1,17 @@
 {% extends "achievements/base.html" %}
 
 {% block content %}
+<script type="module">
+    import PhotoSwipeLightbox from 'https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.3.8/photoswipe-lightbox.esm.min.js';
+    const lightbox = new PhotoSwipeLightbox({
+        gallery: '#gallery',
+        children: 'a',
+        pswpModule: () => import('https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.3.8/photoswipe.esm.min.js')
+    });
+    lightbox.init();
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.3.8/photoswipe.min.css">
+
 
 {% set cover_img = (achievement.cover_img or '/img/achievements/default.jpg' ) %}
 <div class="hero-header" style="
@@ -36,6 +47,18 @@
         {% for tag in achievement.tags %}
             <span class="badge rounded-pill bg-primary">{{ tag.name }}</span>
         {% endfor %}
+
+        <div class="pswp-gallery pswp-gallery" id="gallery">
+            {%for img in gallery%}
+                <a href="{{ url_for('static', filename=img.image) }}" 
+                    data-pswp-width="1669" 
+                    data-pswp-height="2500" 
+                    target="_blank">
+                    <img src="{{ url_for('static', filename=img.image) }}" height="150" alt="" />
+                </a>
+            {% endfor %}
+          </div>
+
         <div class="mt-2 mx-2">
             {{ achievement.content|safe }}
         </div>

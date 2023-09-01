@@ -64,6 +64,7 @@ tags = db.Table('tags',
 )
 
 
+
 class Article(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(64), nullable=False)
@@ -72,10 +73,10 @@ class Article(db.Model):
     cover_img = db.Column(db.String(128), nullable=False)
     
     tags = db.relationship('Tag', secondary='tags', backref=db.backref('articles', lazy=True))
+    images = db.relationship('ImagesArticle')
 
     def __repr__(self):
         return f'<Article: {self.title}>'
-
 
 class Tag(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -98,3 +99,12 @@ class ArticleHistory(db.Model):
 
     def __repr__(self):
         return f'<ArticleHistory: {self.action}: {self.article} by {self.user}>'
+    
+class ImagesArticle(db.Model):
+    article_id = db.Column(db.Integer, db.ForeignKey('article.id'), primary_key=True)
+    image = db.Column(db.String(128), primary_key=True)
+
+    article = db.relationship('Article')
+
+    def __repr__(self):
+        return f'<ImagesArticle: {self.image}: {self.article_id}>'

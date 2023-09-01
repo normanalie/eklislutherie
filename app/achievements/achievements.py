@@ -14,6 +14,7 @@ from app.models import Tag
 from app.achievements import bp
 
 from app.models import Article
+from app.models import ImagesArticle
 from .forms import ArticleForm
 
 
@@ -25,7 +26,9 @@ def index():
 @bp.route('/<int:id>')
 def view(id):
     article = Article.query.get_or_404(id)
-    return render_template('achievements/view.html', achievement=article)
+    images = ImagesArticle.query.filter_by(article_id = id).all()
+    print(images)
+    return render_template('achievements/view.html', achievement=article, gallery=images)
 
 
 
@@ -55,6 +58,7 @@ def edit(id):
         if not error:
             # DB
             db.session.commit()
+            fill_gallery(article, form)
             return redirect(url_for('achievements.list'))
 
         errors.append(error)
@@ -84,12 +88,12 @@ def new():
             # DB
             db.session.add(article)
             db.session.commit()
+            fill_gallery(article, form)
             return redirect(url_for('achievements.list'))
 
         errors.append(error)
 
     return render_template('achievements/edit.html', form=form, errors=errors)
-
 
 @bp.route("/delete/<int:id>", methods=['GET'])
 @login_required
@@ -124,7 +128,7 @@ def image_upload():
         uri = f"/files/{ts}-{filename}"
         file.save(f"{current_app.root_path}/static/{uri}")
         return jsonify({'location' : f'/static/{uri}'})
-    output = Response(status=404)
+    output = Response(status=400)
     output.headers['Error'] = 'Image failed to upload'
     return output 
 
@@ -135,7 +139,7 @@ def check_image(file):
         Return a secure filename if image is correct. Otherwise return False.
         """
         # Check extension
-        match = re.search('^$|([^\s]+(\.(?i)(jpe?g|png|gif|bmp))$)', file.filename)
+        match = re.findall('^$|([^\s]+(\.(jpe?g|png|gif|bmp))$)', file.filename)
         if not match: 
             return False
 
@@ -175,4 +179,25 @@ def fill_article(article, form):
         img.save(f"{current_app.root_path}/static/{uri}")
         article.cover_img = uri
 
+    return None
+
+def fill_gallery(article, form):
+    """
+    Create and fill ImagesArticle row that act as an images gallery for each Article
+    """
+    imgs = form.images.data
+    print(imgs)
+    for img in imgs:
+        if img.filename:
+            imagearticle = ImagesArticle()
+            filename = check_image(img)
+            if not filename:
+                return "Image file is invalid"
+            ts = round(datetime.timestamp(datetime.now()))
+            uri = f"/files/{ts}-{filename}"
+            img.save(f"{current_app.root_path}/static/{uri}")
+            imagearticle.image = uri
+            imagearticle.article_id = article.id
+            db.session.add(imagearticle)
+    db.session.commit()
     return None

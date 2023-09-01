@@ -20,6 +20,23 @@
       quickbars_selection_toolbar: 'bold italic | formatselect | quicklink blockquote',
       images_upload_url: "{{ url_for('achievements.image_upload')}}"
     });
+
+    function uploadGallery(){
+        console.log('upload')
+        let img = document.getElementById("gallery_upload").files[0];
+        let formData = new FormData();
+     
+        formData.append("file", img);
+        fetch("{{ url_for('achievements.image_upload')}}", {method: "POST", body: formData})
+        .then((r)=>{
+            return r.json()
+        })
+        .then((data)=>{
+            console.log(data.location)
+        }).catch((e)=>{
+            console.log(e)
+        });
+    }
 </script>
 
 <div class="container-fluid mt-5">
@@ -62,6 +79,10 @@
                 <br>
                 <label for="tags">Tags</label>
                 {{ form.tags(class="form-control") }}
+            </div>
+            <div class="col-md">
+                <label for="gallery_upload">Ajouter à la gallerie</label>
+                {{ form.images(class="form-control", accept=".jpeg,.jpg,.png,.gif,.bmp") }}
             </div>
         </div>
         <br>
